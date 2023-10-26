@@ -1,0 +1,65 @@
+....
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animal Info</title>
+    <style>
+        /* Add some basic CSS styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #animalInput {
+            padding: 5px;
+            margin: 10px;
+        }
+        #searchButton {
+            padding: 5px 10px;
+            background-color: #0074cc;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #animalInfo {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Animal Information</h1>
+    <input type="text" id="animalInput" placeholder="Enter an animal name">
+    <button id="searchButton" onclick="searchAnimal()">Search</button>
+    <button onclick="clearResults()">Clear</button>
+    <div id="animalInfo"></div>
+
+    <script>
+        function searchAnimal() {
+            const animalName = document.getElementById("animalInput").value;
+            // You can fetch information about the animal from an API or use a predefined data object.
+            // For simplicity, let's use a predefined data object.
+            const animalData = {
+                "lion": "The lion is a species in the family Felidae.",
+                "tiger": "The tiger is the largest extant cat species.",
+              "cow" : "cow give us milk",
+              "dog" : "dog works like security",
+              "cat" : "my wife love cat",
+              "fox" : "fox is more clever",
+                // Add more animals and descriptions here.
+            };
+            
+            const animalInfo = document.getElementById("animalInfo");
+            if (animalData[animalName]) {
+                animalInfo.innerHTML = <p>${animalData[animalName]}</p>;
+            } else {
+                animalInfo.innerHTML = "<p>Animal not found.</p>";
+            }
+        }
+
+        function clearResults() {
+            const animalInfo = document.getElementById("animalInfo");
+            animalInfo.innerHTML = "";
+        }
+    </script>
+</body>
+</html>
