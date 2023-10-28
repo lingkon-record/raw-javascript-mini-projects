@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>English Synonyms App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #container {
+            width: 300px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0074cc;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056a6;
+        }
+        #synonyms {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>English Synonyms Finder</h1>
+    <div id="container">
+        <input type="text" id="wordInput" placeholder="Enter a word">
+        <button onclick="findSynonyms()">Find Synonyms</button>
+        <div id="synonyms"></div>
+    </div>
+
+    <script>
+        async function findSynonyms() {
+            const word = document.getElementById("wordInput").value;
+            const response = await fetch(`https://api.datamuse.com/words?rel_syn=${word}`);
+            const synonyms = await response.json();
+            const synonymsList = synonyms.map(synonym => synonym.word);
+            const synonymsDisplay = synonymsList.join(", ");
+            document.getElementById("synonyms").textContent = `Synonyms: ${synonymsDisplay}`;
+        }
+    </script>
+</body>
+</html>
