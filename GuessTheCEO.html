@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company CEO Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #quiz-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        #quiz-container h1 {
+            text-align: center;
+        }
+        #quiz-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        #quiz-container button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>Guess the CEO</h1>
+        <select id="company-select">
+            <option value="apple">Apple</option>
+            <option value="microsoft">Microsoft</option>
+            <option value="google">Google</option>
+            <option value="amazon">Amazon</option>
+            <option value="facebook">Facebook</option>
+        </select>
+        <button onclick="checkCEO()">Check CEO</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkCEO() {
+            const selectedCompany = document.getElementById("company-select").value;
+            const resultContainer = document.getElementById("result");
+            
+            switch (selectedCompany) {
+                case "apple":
+                    if (prompt("Who is the CEO of Apple?") !== "Tim Cook") {
+                        resultContainer.innerHTML = "You are wrong! The correct answer is Tim Cook.";
+                    } else {
+                        resultContainer.innerHTML = "Correct! Tim Cook is the CEO of Apple.";
+                    }
+                    break;
+                case "microsoft":
+                    if (prompt("Who is the CEO of Microsoft?") !== "Satya Nadella") {
+                        resultContainer.innerHTML = "You are wrong! The correct answer is Satya Nadella.";
+                    } else {
+                        resultContainer.innerHTML = "Correct! Satya Nadella is the CEO of Microsoft.";
+                    }
+                    break;
+                case "google":
+                    if (prompt("Who is the CEO of Google?") !== "Sundar Pichai") {
+                        resultContainer.innerHTML = "You are wrong! The correct answer is Sundar Pichai.";
+                    } else {
+                        resultContainer.innerHTML = "Correct! Sundar Pichai is the CEO of Google.";
+                    }
+                    break;
+                case "amazon":
+                    if (prompt("Who is the CEO of Amazon?") !== "Andy Jassy") {
+                        resultContainer.innerHTML = "You are wrong! The correct answer is Andy Jassy.";
+                    } else {
+                        resultContainer.innerHTML = "Correct! Andy Jassy is the CEO of Amazon.";
+                    }
+                    break;
+                case "facebook":
+                    if (prompt("Who is the CEO of Facebook?") !== "Mark Zuckerberg") {
+                        resultContainer.innerHTML = "You are wrong! The correct answer is Mark Zuckerberg.";
+                    } else {
+                        resultContainer.innerHTML = "Correct! Mark Zuckerberg is the CEO of Facebook.";
+                    }
+                    break;
+                default:
+                    resultContainer.innerHTML = "Please select a company to guess the CEO.";
+            }
+        }
+    </script>
+</body>
+</html>
