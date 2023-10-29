@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .popup-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .popup-list {
+            list-style: none;
+            padding: 0;
+        }
+        .popup-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .popup-list li:last-child {
+            border: none;
+        }
+        .cancel-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modern Button Box</h1>
+    <div class="button-container">
+        <button id="bird-button">Bird</button>
+        <button id="flower-button">Flower</button>
+        <button id="city-button">City</button>
+        <button id="fish-button">Fish</button>
+    </div>
+
+    <div id="bird-popup" class="popup-container">
+        <div class="popup">
+            <h2 class="popup-title">Bird Names</h2>
+            <ul class="popup-list" id="bird-list">
+                <!-- Display 10+ bird names here -->
+            </ul>
+            <button id="bird-cancel" class="cancel-button">Cancel</button>
+        </div>
+    </div>
+    <div id="flower-popup" class="popup-container">
+        <div class="popup">
+            <h2 class="popup-title">Flower Names</h2>
+            <ul class="popup-list" id="flower-list">
+                <!-- Display 10+ flower names here -->
+            </ul>
+            <button id="flower-cancel" class="cancel-button">Cancel</button>
+        </div>
+    </div>
+    <div id="city-popup" class="popup-container">
+        <div class="popup">
+            <h2 class "popup-title">City Names</h2>
+            <ul class="popup-list" id="city-list">
+                <!-- Display 10+ city names here -->
+            </ul>
+            <button id="city-cancel" class="cancel-button">Cancel</button>
+        </div>
+    </div>
+    <div id="fish-popup" class="popup-container">
+        <div class="popup">
+            <h2 class="popup-title">Fish Names</h2>
+            <ul class="popup-list" id="fish-list">
+                <!-- Display 10+ fish names here -->
+            </ul>
+            <button id="fish-cancel" class="cancel-button">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // Add your bird, flower, city, and fish names in arrays
+        const birdNames = ["Sparrow", "Eagle", "Hummingbird", /* Add more bird names */];
+        const flowerNames = ["Rose", "Tulip", "Sunflower", /* Add more flower names */];
+        const cityNames = ["New York", "Paris", "Tokyo", /* Add more city names */];
+        const fishNames = ["Salmon", "Goldfish", "Shark", /* Add more fish names */];
+
+        // Function to display names in the pop-up
+        function displayNames(names, listId, popupId) {
+            const popup = document.getElementById(popupId);
+            const list = document.getElementById(listId);
+            list.innerHTML = "";
+            names.forEach(name => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <span>${name}</span>
+                `;
+                list.appendChild(listItem);
+            });
+            popup.style.display = "block";
+        }
+
+        // Event listeners for buttons
+        document.getElementById("bird-button").addEventListener("click", () => {
+            displayNames(birdNames, "bird-list", "bird-popup");
+        });
+
+        document.getElementById("flower-button").addEventListener("click", () => {
+            displayNames(flowerNames, "flower-list", "flower-popup");
+        });
+
+        document.getElementById("city-button").addEventListener("click", () => {
+            displayNames(cityNames, "city-list", "city-popup");
+        });
+
+        document.getElementById("fish-button").addEventListener("click", () => {
+            displayNames(fishNames, "fish-list", "fish-popup");
+        });
+
+        // Event listeners for cancel buttons
+        function hidePopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = "none";
+        }
+
+        document.getElementById("bird-cancel").addEventListener("click", () => {
+            hidePopup("bird-popup");
+        });
+
+        document.getElementById("flower-cancel").addEventListener("click", () => {
+            hidePopup("flower-popup");
+        });
+
+        document.getElementById("city-cancel").addEventListener("click", () => {
+            hidePopup("city-popup");
+        });
+
+        document.getElementById("fish-cancel").addEventListener("click", () => {
+            hidePopup("fish-popup");
+        });
+    </script>
+</body>
+  </html>
+    
