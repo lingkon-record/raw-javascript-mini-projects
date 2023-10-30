@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #transaction-history {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+
+        #rules-regulations {
+            text-align: left;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Bank</h1>
+    <div id="balance">Balance: $1000</div>
+    <button id="deposit">Deposit</button>
+    <button id="withdraw">Withdraw</button>
+    
+    <div id="transaction-history">
+        <h2>Transaction History</h2>
+        <ul id="history-list">
+            <!-- Transactions will be added here -->
+        </ul>
+    </div>
+    
+    <div id="rules-regulations">
+        <h2>Rules and Regulations</h2>
+        <p>1. Minimum balance requirement: $100</p>
+        <p>2. Maximum withdrawal limit per day: $500</p>
+        <p>3. Interest rate: 3% per annum</p>
+        <!-- Add more rules and regulations here -->
+    </div>
+
+    <script>
+        // Initial balance
+        let balance = 1000;
+
+        // Transaction history array
+        let transactions = [];
+
+        // Elements
+        const balanceElement = document.getElementById("balance");
+        const depositButton = document.getElementById("deposit");
+        const withdrawButton = document.getElementById("withdraw");
+        const historyList = document.getElementById("history-list");
+
+        // Update balance display
+        function updateBalance() {
+            balanceElement.textContent = `Balance: $${balance}`;
+        }
+
+        // Update transaction history
+        function updateHistory(transaction) {
+            const listItem = document.createElement("li");
+            listItem.textContent = transaction;
+            historyList.appendChild(listItem);
+        }
+
+        // Deposit button click event
+        depositButton.addEventListener("click", () => {
+            const amount = parseFloat(prompt("Enter the deposit amount:"));
+            if (!isNaN(amount)) {
+                balance += amount;
+                updateBalance();
+                updateHistory(`Deposit: +$${amount}`);
+            }
+        });
+
+        // Withdraw button click event
+        withdrawButton.addEventListener("click", () => {
+            const amount = parseFloat(prompt("Enter the withdrawal amount:"));
+            if (!isNaN(amount)) {
+                if (balance >= amount) {
+                    balance -= amount;
+                    updateBalance();
+                    updateHistory(`Withdrawal: -$${amount}`);
+                } else {
+                    alert("Insufficient funds!");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
