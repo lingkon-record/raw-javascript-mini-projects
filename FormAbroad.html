@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiple Exam Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        select, input[type="date"], textarea, input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="email"] {
+            border-color: #007bff; /* Blue border for email input */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multiple Exam Form</h1>
+        <form>
+            <label for="country">Select Country:</label>
+            <select id="country">
+                <option value="usa">USA</option>
+                <option value="uk">UK</option>
+                <option value="canada">Canada</option>
+                <!-- Add more country options here -->
+            </select>
+
+            <label for="exam-type">Select Exam Type:</label>
+            <select id="exam-type">
+                <option value="math">Math</option>
+                <option value="science">Science</option>
+                <option value="language">Language</option>
+                <!-- Add more exam types here -->
+            </select>
+
+            <label for="exam-date">Exam Date:</label>
+            <input type="date" id="exam-date">
+
+            <label for="additional-info">Additional Information:</label>
+            <textarea id="additional-info" rows="4" placeholder="Any additional information"></textarea>
+
+            <label for="user-email">Your Email:</label>
+            <input type="email" id="user-email" placeholder="Your email address">
+
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+
+        <div id="result">
+            <!-- Display the result here using JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            // JavaScript code to process the form data and display results
+            var selectedCountry = document.getElementById("country").value;
+            var selectedExamType = document.getElementById("exam-type").value;
+            var selectedExamDate = document.getElementById("exam-date").value;
+            var additionalInfo = document.getElementById("additional-info").value;
+            var userEmail = document.getElementById("user-email").value;
+
+            // You can use this information to fetch data or perform other actions
+            // and update the result section.
+            var resultElement = document.getElementById("result");
+            resultElement.innerHTML = "Selected Country: " + selectedCountry + "<br>" +
+                                    "Selected Exam Type: " + selectedExamType + "<br>" +
+                                    "Exam Date: " + selectedExamDate + "<br>" +
+                                    "Additional Info: " + additionalInfo + "<br>" +
+                                    "Your Email: " + userEmail;
+        }
+    </script>
+</body>
+</html>
