@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Skill Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        button {
+            display: block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Job Skill Test</h1>
+
+        <div class="question">
+            <label for="question1">Question 1: What is 2 + 2?</label>
+            <input type="radio" name="question1" value="2"> 2
+            <input type="radio" name="question1" value="4"> 4
+            <input type="radio" name="question1" value="6"> 6
+        </div>
+
+        <div class="question">
+            <label for="question2">Question 2: What is 3 * 5?</label>
+            <input type="radio" name="question2" value="10"> 10
+            <input type="radio" name="question2" value="15"> 15
+            <input type="radio" name="question2" value="8"> 8
+        </div>
+
+        <button id="submitButton">Submit Answers</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("submitButton").addEventListener("click", function() {
+            const answer1 = document.querySelector('input[name="question1"]:checked').value;
+            const answer2 = document.querySelector('input[name="question2"]:checked').value;
+            const totalPoints = 2; // Total points available
+            let score = 0;
+
+            if (answer1 === "4") {
+                score += 1;
+            }
+
+            if (answer2 === "15") {
+                score += 1;
+            }
+
+            const resultElement = document.getElementById("result");
+            resultElement.textContent = `You scored ${score} out of ${totalPoints} points.`;
+        });
+    </script>
+</body>
+</html>
