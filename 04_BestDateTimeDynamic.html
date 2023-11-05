@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Date and Time-Based Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+        main {
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        #result {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Date and Time-Based Code Generator</h1>
+    </header>
+
+    <main>
+        <h2>Generate a Code Based on Today's Date and Time</h2>
+        <label for="date">Today's Date:</label>
+        <input type="date" id="date">
+        <label for="time">Current Time:</label>
+        <input type="time" id="time">
+        <button id="generate-button">Generate Code</button>
+        <div id="result"></div>
+    </main>
+
+    <script>
+        const generateButton = document.getElementById("generate-button");
+        const dateInput = document.getElementById("date");
+        const timeInput = document.getElementById("time");
+
+        generateButton.addEventListener("click", function() {
+            const now = new Date();
+            const year = now.getFullYear() % 100; // Use the last two digits of the year.
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            
+            const uniqueLetters = generateUniqueLetters(); // Function to generate unique letters
+
+            const generatedCode = `${uniqueLetters}${year}${month}${day}${hours}${minutes}`;
+
+            document.getElementById("result").textContent = `Generated Code: ${generatedCode}`;
+
+            // Set the date and time input fields to the current date and time
+            dateInput.value = `${now.getFullYear()}-${month}-${day}`;
+            timeInput.value = `${hours}:${minutes}`;
+        });
+
+        function generateUniqueLetters() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let letter1, letter2;
+
+            do {
+                letter1 = characters.charAt(Math.floor(Math.random() * characters.length));
+                letter2 = characters.charAt(Math.floor(Math.random() * characters.length));
+            } while (letter1 === letter2); // Ensure the two letters are unique
+
+            return letter1 + letter2;
+        }
+    </script>
+</body>
+</html>
