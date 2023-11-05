@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>English to Bangla Dictionary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        #container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        #search-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #results {
+            margin-top: 10px;
+        }
+
+        .result-item {
+            background-color: #f7f7f7;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-item strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>English to Bangla Dictionary</h1>
+    <div id="container">
+        <input type="text" id="search-box" placeholder="Search by alphabet...">
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const words = {
+            "apple": "আপেল",
+            "banana": "কলা",
+            "orange": "কমলা",
+            "strawberry": "স্ট্রবেরি",
+            "grape": "আঙ্গুর",
+            "mango": "আম",
+            "kiwi": "কিউই",
+            "pineapple": "অনানাস",
+            "watermelon": "তরমুজ",
+            "cherry": "চেরি",
+            "lemon": "লেবু",
+            "papaya": "পেপে",
+            "apricot": "খুবানি",
+            "blueberry": "ব্লুবেরি",
+            "peach": "আড়ু",
+            "pear": "নাশপাতি",
+            "plum": "আলুবখারা",
+            "avocado": "আভোকাডো",
+            "fig": "ডুমুর",
+            "guava": "পেয়ারা",
+            "kiwi": "কিউই",
+            "mango": "আম",
+            "lychee": "লিচু",
+            "pomegranate": "ডালিম",
+            "coconut": "নারিকেল",
+            "peach": "আড়ু",
+            "banana": "কলা",
+            "strawberry": "স্ট্রবেরি",
+            "grape": "আঙ্গুর",
+            "mango": "আম",
+            "kiwi": "কিউই",
+            "pineapple": "অনানাস",
+            "watermelon": "তরমুজ",
+            "cherry": "চেরি",
+            "lemon": "লেবু",
+            "papaya": "পেপে",
+            "apricot": "খুবানি",
+            "blueberry": "ব্লুবেরি",
+            "peach": "আড়ু",
+            "pear": "নাশপাতি",
+            "plum": "আলুবখারা",
+            "avocado": "আভোকাডো",
+            "fig": "ডুমুর",
+            "guava": "পেয়ারা",
+            "kiwi": "কিউই",
+            "mango": "আম",
+            "lychee": "লিচু",
+            "pomegranate": "ডালিম",
+            "coconut": "নারিকেল",
+            "elephant": "হাতি",
+            "lion": "সিংহ",
+            "tiger": "বাঘ",
+            "giraffe": "গিরাফ",
+            "zebra": "জেব্রা",
+            "hippopotamus": "জলগোধূলি",
+            "cheetah": "চীতা",
+            "gazelle": "চিতা",
+            "crocodile": "মগর",
+            "panda": "পান্ডা",
+            "kangaroo": "ক্যাঙ্গারু",
+            "koala": "কোয়ালা",
+            "rhinoceros": "গোণ্ডা",
+            "octopus": "পষ্প",
+            
+        };
+
+        const searchBox = document.getElementById('search-box');
+        const results = document.getElementById('results');
+
+        searchBox.addEventListener('input', () => {
+            const query = searchBox.value.toLowerCase();
+            results.innerHTML = "";
+
+            for (const word in words) {
+                if (word.startsWith(query)) {
+                    const translation = words[word];
+                    const resultItem = document.createElement('div');
+                    resultItem.classList.add('result-item');
+                    resultItem.innerHTML = `<strong>${word}:</strong> ${translation}`;
+                    results.appendChild(resultItem);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
