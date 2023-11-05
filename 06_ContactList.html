@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phonebook</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .contact {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .result-item {
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+
+        .result-item strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Phonebook</h1>
+    <div class="contact container">
+        <input type="text" class="search-box form-control" placeholder="Search by name...">
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const contacts = {
+            "John Smith": "123-456-7890",
+            "Alice Johnson": "987-654-3210",
+            "Robert Brown": "555-123-4567",
+            "Emily Davis": "111-222-3333",
+            // Add more contact names and numbers here
+        };
+
+        const searchBox = document.querySelector('.search-box');
+        const results = document.getElementById('results');
+
+        searchBox.addEventListener('input', () => {
+            const query = searchBox.value.toLowerCase();
+            results.innerHTML = "";
+
+            for (const contact in contacts) {
+                if (contact.toLowerCase().includes(query)) {
+                    const details = contacts[contact];
+                    const resultItem = document.createElement('div');
+                    resultItem.classList.add('result-item');
+                    resultItem.innerHTML = `<strong>${contact}:</strong> ${details}`;
+                    results.appendChild(resultItem);
+                }
+            }
+        });
+    </script>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
