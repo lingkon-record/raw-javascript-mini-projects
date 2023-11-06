@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bird or Flower Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .question-section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #score {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bird or Flower Quiz</h1>
+        <div class="question-section">
+            <p>Is it a bird or a flower?</p>
+            <div id="question"></div>
+            <button onclick="checkAnswer('bird')">Bird</button>
+            <button onclick="checkAnswer('flower')">Flower</button>
+        </div>
+        <p id="score">Score: 0</p>
+    </div>
+
+    <script>
+        var questions = [
+            { object: "bird", name: "Sparrow" },
+            { object: "flower", name: "Rose" },
+            { object: "bird", name: "Blue Jay" },
+            { object: "flower", name: "Tulip" },
+            { object: "bird", name: "Finch" },
+            { object: "flower", name: "Daisy" },
+            { object: "bird", name: "Cardinal" },
+            { object: "flower", name: "Sunflower" },
+            { object: "bird", name: "Parrot" },
+            { object: "flower", name: "Lily" },
+            // Add more objects and names here...
+        ];
+
+        var score = 0;
+        var currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                var questionElement = document.getElementById("question");
+                questionElement.innerHTML = questions[currentQuestionIndex].name;
+            } else {
+                alert("Quiz completed. Your score is: " + score);
+            }
+        }
+
+        function checkAnswer(answer) {
+            if (currentQuestionIndex < questions.length) {
+                if (answer === questions[currentQuestionIndex].object) {
+                    score++;
+                } else {
+                    score--;
+                }
+
+                currentQuestionIndex++;
+                document.getElementById("score").textContent = "Score: " + score;
+                displayQuestion();
+            }
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>
