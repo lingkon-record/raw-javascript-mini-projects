@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Baby Name Picker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Baby Name Picker</h1>
+
+        <label for="motherName">Enter Mother's Name:</label>
+        <input type="text" id="motherName">
+        <button onclick="pickBabyName()">Pick Baby Name</button>
+
+        <p id="babyName">Baby's Name:</p>
+    </div>
+
+    <script>
+        var babyNames = {
+            "A": ["Aaron", "Abigail", "Alex", "Alice", "Anna"],
+            "B": ["Benjamin", "Bella", "Brandon", "Beth", "Brianna"],
+            "C": ["Caleb", "Charlotte", "Carter", "Chloe", "Christopher"],
+            "D": ["Daniel", "David", "Daisy", "Delilah", "Dylan"],
+            // Add more baby names here...
+        };
+
+        function pickBabyName() {
+            var motherName = document.getElementById("motherName").value;
+            var firstLetter = motherName.charAt(0).toUpperCase();
+
+            if (babyNames[firstLetter] && babyNames[firstLetter].length > 0) {
+                var randomIndex = Math.floor(Math.random() * babyNames[firstLetter].length);
+                var selectedBabyName = babyNames[firstLetter][randomIndex];
+
+                document.getElementById("babyName").textContent = "Baby's Name: " + selectedBabyName;
+            } else {
+                document.getElementById("babyName").textContent = "No baby names available for that letter.";
+            }
+        }
+    </script>
+</body>
+</html>
