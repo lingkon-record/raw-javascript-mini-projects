@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Indian Name Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            color: #007BFF;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Indian Name Generator</h1>
+        <label for="gender">Select Gender:</label>
+        <select id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <button onclick="generateName()">Generate Name</button>
+        <div id="result">
+            <!-- Generated name will be displayed here -->
+        </div>
+    </div>
+    <script>
+        const maleNames = ["Raj", "Amit", "Vijay", "Anil", "Sandeep", "Rahul", "Suresh", "Alok", "Rakesh", "Sunil"];
+        const femaleNames = ["Pooja", "Priya", "Neha", "Rita", "Sunita", "Sarika", "Monika", "Nisha", "Shweta", "Arti"];
+
+        function generateName() {
+            const selectedGender = document.getElementById("gender").value;
+            const resultElement = document.getElementById("result");
+
+            if (selectedGender === "male") {
+                const randomIndex = Math.floor(Math.random() * maleNames.length);
+                resultElement.textContent = maleNames[randomIndex];
+            } else {
+                const randomIndex = Math.floor(Math.random() * femaleNames.length);
+                resultElement.textContent = femaleNames[randomIndex];
+            }
+        }
+    </script>
+</body>
+</html>
