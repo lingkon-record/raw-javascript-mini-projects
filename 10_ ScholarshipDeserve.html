@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scholarship Recipient</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            color: #007BFF;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #examResults {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        #scholarshipRecipient {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        #requirements {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        #requirements p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scholarship Recipient</h1>
+        <label for="marks">Enter Exam Marks (out of 100) for Six Subjects:</label>
+        <input type="number" id="marks" required>
+        <button onclick="calculateScholarship()">Calculate Scholarship Recipient</button>
+        <div id="examResults">
+            <!-- Exam marks will be displayed here -->
+        </div>
+        <div id="scholarshipRecipient">
+            Scholarship Recipient: <span id="recipientName">None</span>
+        </div>
+        <div id="requirements">
+            <h2>Requirements of Scholarship:</h2>
+            <p>90% or higher - Full Scholarship</p>
+            <p>80% or higher - 75% Scholarship</p>
+            <p>70% or higher - 50% Scholarship</p>
+            <p>60% or higher - 25% Scholarship</p>
+            <p>50% or higher - 10% Scholarship</p>
+        </div>
+    </div>
+    <script>
+        function calculateScholarship() {
+            const marks = parseFloat(document.getElementById("marks").value);
+
+            if (!isNaN(marks) && marks >= 0 && marks <= 100) {
+                // Determine the scholarship recipient based on the marks
+                let recipientName = "None";
+
+                if (marks >= 90) {
+                    recipientName = "Alice";
+                } else if (marks >= 80) {
+                    recipientName = "Bob";
+                } else if (marks >= 70) {
+                    recipientName = "Charlie";
+                } else if (marks >= 60) {
+                    recipientName = "David";
+                } else if (marks >= 50) {
+                    recipientName = "Eve";
+                } else if (marks >= 40) {
+                    recipientName = "Frank";
+                }
+
+                document.getElementById("recipientName").textContent = recipientName;
+
+                // Display the exam results
+                const examResults = document.getElementById("examResults");
+                examResults.innerHTML = "Exam Marks: " + marks.toFixed(2) + "/100";
+            } else {
+                alert("Please enter a valid exam mark between 0 and 100.");
+            }
+        }
+    </script>
+</body>
+</html>
