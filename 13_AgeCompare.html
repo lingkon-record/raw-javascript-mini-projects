@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Age Comparison</h1>
+        <form id="ageComparisonForm">
+            <label for="yourAge">Your Age:</label>
+            <input type="number" id="yourAge" required><br>
+            <label for="fatherAge">Father's Age:</label>
+            <input type="number" id="fatherAge" required><br>
+            <label for="motherAge">Mother's Age:</label>
+            <input type="number" id="motherAge" required><br>
+            <button type="button" onclick="compareAges()">Compare Ages</button>
+        </form>
+        <table id="ageComparisonTable">
+            <tr>
+                <th>Person</th>
+                <th>Age</th>
+                <th>Age Difference</th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function compareAges() {
+            const yourAge = parseFloat(document.getElementById('yourAge').value);
+            const fatherAge = parseFloat(document.getElementById('fatherAge').value);
+            const motherAge = parseFloat(document.getElementById('motherAge').value);
+
+            const table = document.getElementById('ageComparisonTable');
+            table.innerHTML = `
+                <tr>
+                    <th>Person</th>
+                    <th>Age</th>
+                    <th>Age Difference</th>
+                </tr>
+                <tr>
+                    <td>You</td>
+                    <td>${yourAge}</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>Father</td>
+                    <td>${fatherAge}</td>
+                    <td>${Math.abs(yourAge - fatherAge)}</td>
+                </tr>
+                <tr>
+                    <td>Mother</td>
+                    <td>${motherAge}</td>
+                    <td>${Math.abs(yourAge - motherAge)}</td>
+                </tr>
+                <tr>
+                    <td>Both Parents</td>
+                    <td>--</td>
+                    <td>${Math.abs(yourAge - (fatherAge + motherAge) / 2)}</td>
+                </tr>
+            `;
+        }
+    </script>
+</body>
+</html>
