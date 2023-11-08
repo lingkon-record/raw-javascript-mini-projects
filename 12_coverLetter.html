@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .cover-letter {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+        }
+        .personal-info {
+            text-align: right;
+        }
+        .section {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="cover-letter">
+        <h1>Cover Letter</h1>
+        <div class="personal-info">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" required><br>
+            <label for="address">Address:</label>
+            <input type="text" id="address" required><br>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required><br>
+            <label for="date">Date:</label>
+            <input type="date" id="date" required><br>
+        </div>
+        <div class="section">
+            <h2>Dear Hiring Manager,</h2>
+            <p>Enter your introductory paragraph here...</p>
+        </div>
+        <div class="section">
+            <h2>Your Academic and Personal Information</h2>
+            <p>Enter relevant information about your education, skills, and experience...</p>
+        </div>
+        <div class="section">
+            <h2>Why You're a Strong Candidate</h2>
+            <p>Explain why you are a strong fit for the position...</p>
+        </div>
+        <div class="section">
+            <h2>Thank You for Considering My Application</h2>
+            <p>Express gratitude and your enthusiasm for the opportunity...</p>
+        </div>
+        <div class="section">
+            <h2>Sincerely,</h2>
+            <p>Your Name</p>
+        </div>
+        <button onclick="generateCoverLetter()">Generate Cover Letter</button>
+        <div id="coverLetterOutput"></div>
+    </div>
+
+    <script>
+        // JavaScript for generating the cover letter
+        function generateCoverLetter() {
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const date = document.getElementById('date').value;
+
+            const coverLetter = document.querySelector('.cover-letter');
+            const personalInfo = document.querySelector('.personal-info');
+            coverLetter.removeChild(personalInfo);
+
+            // Create a formatted cover letter
+            const formattedCoverLetter = `
+                <h1>Cover Letter</h1>
+                <p>Date: ${date}</p>
+                <p>${address}</p>
+                <p>Phone: ${phone}</p>
+                <p>Email: ${email}</p>
+                <br>
+                <p>Dear Hiring Manager,</p>
+                <br>
+                <p>Enter your introductory paragraph here...</p>
+                <br>
+                <p>Your Academic and Personal Information:</p>
+                <p>Enter relevant information about your education, skills, and experience...</p>
+                <br>
+                <p>Why You're a Strong Candidate:</p>
+                <p>Explain why you are a strong fit for the position...</p>
+                <br>
+                <p>Thank You for Considering My Application</p>
+                <p>Express gratitude and your enthusiasm for the opportunity...</p>
+                <br>
+                <p>Sincerely,</p>
+                <p>${name}</p>
+            `;
+
+            const coverLetterOutput = document.getElementById('coverLetterOutput');
+            coverLetterOutput.innerHTML = formattedCoverLetter;
+        }
+    </script>
+</body>
+</html>
+
