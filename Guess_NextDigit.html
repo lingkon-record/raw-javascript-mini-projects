@@ -1,0 +1,58 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .guess-container {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            font-size: 3em;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .result-container {
+            display: none;
+            font-size: 2em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="guess-container" onclick="generateRandomNumber()">
+        Guess
+    </div>
+
+    <div class="result-container" id="resultContainer"></div>
+
+    <script>
+        function generateRandomNumber() {
+            const randomNumber = Math.floor(Math.random() * 10) + 1;
+            const resultContainer = document.getElementById('resultContainer');
+            resultContainer.innerHTML = `The next digit is: ${randomNumber}`;
+            resultContainer.style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>
