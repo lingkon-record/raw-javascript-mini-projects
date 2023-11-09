@@ -1,0 +1,121 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Analysis App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        div.container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #555;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        label:hover {
+            background-color: #e0e0e0;
+        }
+
+        button {
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #analysis-result {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            text-align: left;
+        }
+
+        #analysis-result h2 {
+            color: #555;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        #analysis-result p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Health Analysis App</h1>
+
+        <!-- Fruits and Food Selection -->
+        <div>
+            <h2>Select Fruits and Food for Analysis</h2>
+            <!-- Add more items as needed -->
+            <label><input type="checkbox" class="item" data-name="Apple" data-advantage="Rich in fiber and antioxidants." data-disadvantage="High sugar content, moderation advised."> Apple</label>
+            <label><input type="checkbox" class="item" data-name="Broccoli" data-advantage="High in vitamins and fiber." data-disadvantage="May cause gas in some individuals."> Broccoli</label>
+            <!-- Add more fruits and food items -->
+        </div>
+
+        <button onclick="analyzeSelection()">Analyze</button>
+
+        <div id="analysis-result">
+            <!-- Display analysis results here -->
+        </div>
+    </div>
+
+    <script>
+        function analyzeSelection() {
+            const selectedItems = document.querySelectorAll('.item:checked');
+            let analysisResult = '<h2>Health Analysis:</h2>';
+
+            selectedItems.forEach(item => {
+                const itemName = item.dataset.name;
+                const advantage = item.dataset.advantage;
+                const disadvantage = item.dataset.disadvantage;
+
+                analysisResult += <p><strong>${itemName}:</strong></p>;
+                analysisResult += <p><strong>Advantage:</strong> ${advantage}</p>;
+                analysisResult += <p><strong>Disadvantage:</strong> ${disadvantage}</p>;
+            });
+
+            document.getElementById('analysis-result').innerHTML = analysisResult;
+        }
+    </script>
+</body>
+</html>
