@@ -1,0 +1,37 @@
+ <h2 class="category">Meat</h2>
+            <!-- Add more meat items as needed -->
+            <label><input type="checkbox" class="item" data-category="Meat" data-name="Chicken Breast" data-price="5.99"> Chicken Breast - $5.99</label>
+            <label><input type="checkbox" class="item" data-category="Meat" data-name="Ground Beef" data-price="8.99"> Ground Beef - $8.99</label>
+            <!-- Add more meat items -->
+        </div>
+
+        <button onclick="submitOrder()">Submit</button>
+
+        <div id="order-summary">
+            <!-- Display selected items and total price here -->
+        </div>
+    </div>
+
+    <script>
+        function submitOrder() {
+            const selectedItems = document.querySelectorAll('.item:checked');
+            let totalPrice = 0;
+            let orderSummary = '<h2>Your Order:</h2>';
+
+            selectedItems.forEach(item => {
+                const itemName = item.dataset.name;
+                const itemPrice = parseFloat(item.dataset.price);
+                const category = item.dataset.category;
+
+                orderSummary += <p>${itemName} (Category: ${category}) - $${itemPrice.toFixed(2)}</p>;
+                totalPrice += itemPrice;
+            });
+
+            orderSummary += <h3>Total Price: $${totalPrice.toFixed(2)}</h3>;
+
+            document.getElementById('order-summary').innerHTML = orderSummary;
+            alert('This is your bill. Please proceed to payment.');
+        }
+    </script>
+</body>
+</html>
