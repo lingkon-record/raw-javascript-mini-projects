@@ -1,0 +1,67 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Next Name</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .guess-container {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            font-size: 2em;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .guess-container:hover {
+            background-color: #0056b3;
+        }
+
+        .result-container {
+            display: none;
+            font-size: 1.5em;
+            margin-top: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="guess-container" onclick="generateRandomName()">
+        Guess Name
+    </div>
+
+    <div class="result-container" id="resultContainer"></div>
+
+    <script>
+        function generateRandomName() {
+            const boyNames = ['Lingkon', 'Limon', 'Roky', 'Shawon', 'Rabbi', 'Sujon', 'Sobuj'];
+            const randomIndex = Math.floor(Math.random() * boyNames.length);
+            const randomName = boyNames[randomIndex];
+
+            const resultContainer = document.getElementById('resultContainer');
+            resultContainer.innerHTML = `The next name is: ${randomName}`;
+            resultContainer.style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>
