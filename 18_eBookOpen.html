@@ -1,0 +1,83 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Famous Names Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result-container {
+            display: none;
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="generateFamousNames('Books')">Books</button>
+    <button onclick="generateFamousNames('City')">City</button>
+    <button onclick="generateFamousNames('Famous')">Famous</button>
+
+    <div class="result-container" id="resultContainer"></div>
+
+    <script>
+        function generateFamousNames(category) {
+            let names = [];
+
+            switch (category) {
+                case 'Books':
+                    names = ['To Kill a Mockingbird', '1984', 'The Great Gatsby', 'Harry Potter', 'The Catcher in the Rye', 'The Lord of the Rings', 'The Hobbit', 'Pride and Prejudice', 'The Hunger Games', 'The Da Vinci Code'];
+                    break;
+
+                case 'City':
+                    names = ['New York City', 'Tokyo', 'Paris', 'London', 'Rome', 'Istanbul', 'Sydney', 'Rio de Janeiro', 'Cape Town', 'Dubai'];
+                    break;
+
+                case 'Famous':
+                    names = ['Albert Einstein', 'Leonardo da Vinci', 'Marie Curie', 'Nelson Mandela', 'Oprah Winfrey', 'Steve Jobs', 'William Shakespeare', 'Mahatma Gandhi', 'Queen Elizabeth II', 'Elvis Presley'];
+                    break;
+
+                default:
+                    break;
+            }
+
+            const resultContainer = document.getElementById('resultContainer');
+            resultContainer.innerHTML = `<strong>${category} Names:</strong><br>${names.join(', ')}`;
+            resultContainer.style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>
