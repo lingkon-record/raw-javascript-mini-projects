@@ -1,0 +1,111 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lingkon Fresh Vegetables</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    label {
+      font-size: 16px;
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Lingkon Fresh Vegetables</h1>
+    <p>Your source for high-quality, fresh vegetables. Discover a variety of delicious options.</p>
+    
+    <label for="priceInput">Select Price:</label>
+    <input type="number" id="priceInput" placeholder="Enter price">
+
+    <button onclick="getVegetables()">Submit</button>
+
+    <h2>Top 5 Vegetables:</h2>
+    <ul id="vegetablesList"></ul>
+
+    <script>
+      function getVegetables() {
+        const price = document.getElementById('priceInput').value;
+        
+        // Simulating data (replace this with your actual data retrieval logic)
+        const vegetablesData = [
+          { name: 'Carrot', price: 1.5 },
+          { name: 'Broccoli', price: 2.0 },
+          { name: 'Spinach', price: 1.8 },
+          { name: 'Tomato', price: 1.2 },
+          { name: 'Cucumber', price: 1.0 },
+          { name: 'Bell Pepper', price: 2.5 }
+        ];
+
+        const filteredVegetables = vegetablesData.filter(vegetable => vegetable.price <= price);
+
+        const vegetablesList = document.getElementById('vegetablesList');
+        vegetablesList.innerHTML = '';
+
+        if (filteredVegetables.length > 0) {
+          filteredVegetables.slice(0, 5).forEach(vegetable => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${vegetable.name} - $${vegetable.price}`;
+            vegetablesList.appendChild(listItem);
+          });
+        } else {
+          vegetablesList.innerHTML = '<p>No vegetables found within the selected price range.</p>';
+        }
+      }
+    </script>
+  </div>
+</body>
+</html>
