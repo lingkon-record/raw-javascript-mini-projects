@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 300px;
+        }
+
+        header {
+            background-color: #4caf50;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+        }
+
+        form {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h2>Contact Details</h2>
+    </header>
+
+    <form id="contactForm">
+        <label for="phoneNumber">Enter Phone Number:</label>
+        <input type="tel" id="phoneNumber" placeholder="e.g., 9876543210" required>
+
+        <button type="button" onclick="checkContact()">Check Details</button>
+    </form>
+
+    <div id="output"></div>
+</div>
+
+<script>
+    function checkContact() {
+        const enteredNumber = document.getElementById('phoneNumber').value;
+
+        // Replace the following fake numbers with the desired ones
+        const contactNumbers = {
+            '9876543210': { name: 'John Doe', details: 'Fake details for demo purposes.' },
+            '9876543211': { name: 'Jane Smith', details: 'Indian, Age 22, College student, BBA, Dokan in Delhi , Earn 1200$' },
+            // Add more entries as needed
+        };
+
+        const contactDetails = contactNumbers[enteredNumber];
+
+        if (contactDetails) {
+            const detailsMessage = `Name: ${contactDetails.name}<br>Details: ${contactDetails.details}`;
+            document.getElementById('output').innerHTML = detailsMessage;
+        } else {
+            document.getElementById('output').innerText = 'Contact not found. Try again.';
+        }
+    }
+</script>
+
+</body>
+</html>
