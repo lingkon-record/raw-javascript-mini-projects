@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    h1 {
+      color: #3498db;
+    }
+
+    label {
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    select, input, button {
+      font-size: 16px;
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #3498db;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #orderList {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #3498db;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    #orderList p {
+      margin: 10px 0;
+      color: #333;
+    }
+  </style>
+  <title>Fruit Discount App</title>
+</head>
+<body>
+  <h1>Fruit Discount App</h1>
+
+  <label for="fruitSelect">Select a Fruit:</label>
+  <select id="fruitSelect">
+    <option value="apple">Apple</option>
+    <option value="banana">Banana</option>
+    <option value="orange">Orange</option>
+    <option value="grape">Grape</option>
+    <option value="kiwi">Kiwi</option>
+    <option value="strawberry">Strawberry</option>
+    <option value="mango">Mango</option>
+    <option value="pineapple">Pineapple</option>
+    <option value="watermelon">Watermelon</option>
+    <option value="pear">Pear</option>
+  </select>
+
+  <label for="customDiscount">Enter Custom Discount (%):</label>
+  <input type="number" id="customDiscount" min="0" placeholder="0">
+
+  <button onclick="addToOrder()">Add to Order</button>
+
+  <div id="orderList"></div>
+
+  <script>
+    const fruitDiscounts = {};
+
+    function addToOrder() {
+      var selectedFruit = document.getElementById('fruitSelect').value;
+      var customDiscount = parseInt(document.getElementById('customDiscount').value) || 0;
+
+      if (!fruitDiscounts[selectedFruit]) {
+        fruitDiscounts[selectedFruit] = [];
+      }
+
+      fruitDiscounts[selectedFruit].push(customDiscount);
+
+      updateOrderList();
+    }
+
+    function updateOrderList() {
+      var orderText = '';
+
+      for (const fruit in fruitDiscounts) {
+        if (fruitDiscounts.hasOwnProperty(fruit)) {
+          const discounts = fruitDiscounts[fruit];
+          const originalPrice = getOriginalPrice(fruit);
+          const averageDiscountedPrice = calculateAverageDiscount(originalPrice, discounts);
+
+          orderText += `
+            <p>${capitalizeFirstLetter(fruit)}: Average Discounted Price - $${averageDiscountedPrice.toFixed(2)}</p>
+          `;
+        }
+      }
+
+      document.getElementById('orderList').innerHTML = orderText;
+    }
+
+    function getOriginalPrice(fruit) {
+      const fruitPrices = {
+        apple: 51.0,
+        banana: 80.5,
+        orange: 71.2,
+        grape: 92.5,
+        kiwi: 61.8,
+        strawberry: 3.0,
+        mango: 52.0,
+        pineapple: 2.5,
+        watermelon: 4.0,
+        pear: 71.5,
+      };
+
+      return fruitPrices[fruit] || 0;
+    }
+
+    function calculateAverageDiscount(originalPrice, array) {
+      const sumDiscount = array.reduce((acc, val) => acc + (originalPrice * val) / 100, 0);
+      const averageDiscountedPrice = originalPrice - (sumDiscount / array.length);
+      return averageDiscountedPrice;
+    }
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+  </script>
+</body>
+</html>
+
