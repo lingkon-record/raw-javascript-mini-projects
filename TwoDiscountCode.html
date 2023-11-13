@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    h1 {
+      color: #3498db;
+    }
+
+    label {
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    select, input, button {
+      font-size: 16px;
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #3498db;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #orderList {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #3498db;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    #orderList p {
+      margin: 10px 0;
+      color: #333;
+    }
+  </style>
+  <title>Book Order App</title>
+</head>
+<body>
+  <h1>Book Order App</h1>
+
+  <label for="bookSelect">Select a Book:</label>
+  <select id="bookSelect">
+    <option value="1">The Great Gatsby - $10</option>
+    <option value="2">To Kill a Mockingbird - $12</option>
+    <option value="3">1984 - $15</option>
+    <!-- Add more book options as needed -->
+  </select>
+
+  <label for="discountCode">Enter Discount Code:</label>
+  <input type="text" id="discountCode" placeholder="Unique discount code">
+
+  <label for="customDiscount">Enter Custom Discount (%):</label>
+  <input type="number" id="customDiscount" min="0" placeholder="0">
+
+  <button onclick="addToOrder()">Add to Order</button>
+
+  <div id="orderList"></div>
+
+  <script>
+    const bookList = {
+      1: { title: "The Great Gatsby", price: 10, discountCode: "GATSBY20" },
+      2: { title: "To Kill a Mockingbird", price: 12, discountCode: "MOCKING10" },
+      3: { title: "1984", price: 15, discountCode: "NINETEEN15" },
+      // Add more books with unique details
+    };
+
+    function addToOrder() {
+      var selectedBookId = document.getElementById('bookSelect').value;
+      var discountCode = document.getElementById('discountCode').value;
+      var customDiscount = parseInt(document.getElementById('customDiscount').value) || 0;
+
+      var selectedBook = bookList[selectedBookId];
+      if (!selectedBook) {
+        alert("Invalid book selection");
+        return;
+      }
+
+      if (discountCode !== selectedBook.discountCode) {
+        alert("Invalid discount code");
+        return;
+      }
+
+      var discountedPrice = selectedBook.price - (selectedBook.price * customDiscount) / 100;
+
+      var orderText = `
+        <p>Book: ${selectedBook.title}</p>
+        <p>Price: $${selectedBook.price}</p>
+        <p>Discounted Price: $${discountedPrice.toFixed(2)}</p>
+      `;
+
+      document.getElementById('orderList').innerHTML += orderText;
+    }
+  </script>
+</body>
+</html>
