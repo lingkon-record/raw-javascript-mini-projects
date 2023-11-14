@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    h1 {
+      color: #3498db;
+    }
+
+    label {
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    select, input, button {
+      font-size: 16px;
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #3498db;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #bill {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #3498db;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #bill p {
+      margin: 10px 0;
+      color: #333;
+    }
+  </style>
+  <title>Online Grocery Store</title>
+</head>
+<body>
+  <h1>Online Grocery Store</h1>
+
+  <!-- Soft Drinks Section -->
+  <label for="drinkSelect">Select a Soft Drink:</label>
+  <select id="drinkSelect">
+    <option value="1.5">Coca Cola - $1.5</option>
+    <option value="1.2">Pepsi - $1.2</option>
+    <option value="1.8">Sprite - $1.8</option>
+    <option value="2.0">Fanta - $2.0</option>
+    <option value="1.3">Mountain Dew - $1.3</option>
+    <!-- Add more options as needed -->
+  </select>
+
+  <label for="drinkQuantity">Quantity:</label>
+  <input type="number" id="drinkQuantity" min="1" value="1">
+
+  <!-- Vegetables Section -->
+  <label for="vegetableName">Vegetable Name:</label>
+  <input type="text" id="vegetableName" placeholder="Enter vegetable name">
+
+  <label for="vegetablePrice">Price per Kg:</label>
+  <input type="number" id="vegetablePrice" min="0.1" step="0.1" placeholder="0.0">
+
+  <label for="vegetableQuantity">Quantity (Kg):</label>
+  <input type="number" id="vegetableQuantity" min="0.1" step="0.1" value="1">
+
+  <!-- Fish Section -->
+  <label for="fishName">Fish Name:</label>
+  <input type="text" id="fishName" placeholder="Enter fish name">
+
+  <label for="fishPrice">Price per Kg:</label>
+  <input type="number" id="fishPrice" min="0.1" step="0.1" placeholder="0.0">
+
+  <label for="fishQuantity">Quantity (Kg):</label>
+  <input type="number" id="fishQuantity" min="0.1" step="0.1" value="1">
+
+  <!-- Fruits Section -->
+  <label for="fruitName">Fruit Name:</label>
+  <input type="text" id="fruitName" placeholder="Enter fruit name">
+
+  <label for="fruitPrice">Price per Kg:</label>
+  <input type="number" id="fruitPrice" min="0.1" step="0.1" placeholder="0.0">
+
+  <label for="fruitQuantity">Quantity (Kg):</label>
+  <input type="number" id="fruitQuantity" min="0.1" step="0.1" value="1">
+
+  <!-- Discount Section -->
+  <label for="discount">Enter Discount (%):</label>
+  <input type="number" id="discount" min="0" placeholder="0">
+
+  <button onclick="calculateBill()">Calculate Total</button>
+
+  <div id="bill"></div>
+
+  <script>
+    function calculateBill() {
+      var drinkPrice = parseFloat(document.getElementById('drinkSelect').value);
+      var drinkQuantity = parseInt(document.getElementById('drinkQuantity').value);
+
+      var vegetableName = document.getElementById('vegetableName').value;
+      var vegetablePrice = parseFloat(document.getElementById('vegetablePrice').value);
+      var vegetableQuantity = parseFloat(document.getElementById('vegetableQuantity').value);
+
+      var fishName = document.getElementById('fishName').value;
+      var fishPrice = parseFloat(document.getElementById('fishPrice').value);
+      var fishQuantity = parseFloat(document.getElementById('fishQuantity').value);
+
+      var fruitName = document.getElementById('fruitName').value;
+      var fruitPrice = parseFloat(document.getElementById('fruitPrice').value);
+      var fruitQuantity = parseFloat(document.getElementById('fruitQuantity').value);
+
+      var discount = parseInt(document.getElementById('discount').value);
+
+      var drinkTotal = drinkPrice * drinkQuantity;
+      var vegetableTotal = vegetablePrice * vegetableQuantity;
+      var fishTotal = fishPrice * fishQuantity;
+      var fruitTotal = fruitPrice * fruitQuantity;
+
+      var subtotal = drinkTotal + vegetableTotal + fishTotal + fruitTotal;
+      var discountAmount = (subtotal * discount) / 100;
+      var total = subtotal - discountAmount;
+
+      var billText = `
+        <p>Soft Drink: $${drinkTotal.toFixed(2)}</p>
+        <p>Vegetable (${vegetableName}): $${vegetableTotal.toFixed(2)}</p>
+        <p>Fish (${fishName}): $${fishTotal.toFixed(2)}</p>
+        <p>Fruit (${fruitName}): $${fruitTotal.toFixed(2)}</p>
+        <p>Subtotal: $${subtotal.toFixed(2)}</p>
+        <p>Discount: ${discount}%</p>
+        <p>Discount Amount: $${discountAmount.toFixed(2)}</p>
+        <p>Total: $${total.toFixed(2)}</p>
+      `;
+
+      document.getElementById('bill').innerHTML = billText;
+    }
+  </script>
+</body>
+  </html>
+  
