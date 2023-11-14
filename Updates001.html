@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+      border: 2px solid #4caf50;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="inputForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" required>
+
+    <label for="education">Education Level:</label>
+    <select id="education" required>
+      <option value="HSC">HSC</option>
+      <option value="SSC">SSC</option>
+      <option value="Degree">Degree</option>
+    </select>
+
+    <label for="results">Results:</label>
+    <input type="number" id="results" required>
+
+    <button type="button" onclick="submitForm()">Submit</button>
+  </form>
+
+  <table id="resultTable"></table>
+
+  <script>
+    function submitForm() {
+      const name = document.getElementById('name').value;
+      const age = document.getElementById('age').value;
+      const education = document.getElementById('education').value;
+      const results = document.getElementById('results').value;
+
+      const table = document.getElementById('resultTable');
+      const headerRow = table.insertRow(0);
+      const headers = ['Name', 'Age', 'Education', 'Results'];
+
+      headers.forEach(headerText => {
+        const th = document.createElement('th');
+        th.appendChild(document.createTextNode(headerText));
+        headerRow.appendChild(th);
+      });
+
+      const row = table.insertRow(1);
+      const values = [name, age, education, results];
+
+      values.forEach(value => {
+        const td = document.createElement('td');
+        td.appendChild(document.createTextNode(value));
+        row.appendChild(td);
+      });
+
+      // Clear form fields
+      document.getElementById('inputForm').reset();
+    }
+  </script>
+
+</body>
+</html>
