@@ -1,0 +1,131 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Lottery</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #2980B9, #6DD5FA);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #lottery-container {
+      text-align: center;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      background-color: #fff;
+    }
+
+    #card-options {
+      margin-bottom: 30px;
+    }
+
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 30px;
+      color: #27ae60;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #27ae60;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #219653;
+    }
+  </style>
+</head>
+<body>
+
+<div id="lottery-container">
+  <h2 style="color: #27ae60;">Animal Lottery</h2>
+  <div id="card-options">
+    <label for="card-select" style="font-size: 18px; color: #333;">Select an animal:</label>
+    <select id="card-select" style="font-size: 16px;">
+      <option value="lion">Lion</option>
+      <option value="elephant">Elephant</option>
+      <option value="giraffe">Giraffe</option>
+      <option value="tiger">Tiger</option>
+      <option value="penguin">Penguin</option>
+      <option value="panda">Panda</option>
+      <option value="koala">Koala</option>
+      <option value="zebra">Zebra</option>
+      <option value="dolphin">Dolphin</option>
+      <option value="cheetah">Cheetah</option>
+      <option value="peacock">Peacock</option>
+      <option value="rhinoceros">Rhinoceros</option>
+    </select>
+  </div>
+  <button onclick="playLottery()">Play Lottery</button>
+  <div id="result"></div>
+
+  <script>
+    function playLottery() {
+      const selectedAnimal = document.getElementById('card-select').value;
+      const randomNumber = Math.floor(Math.random() * 10) + 1; // Generate a random number between 1 and 10
+
+      let moneyWon;
+
+      switch (selectedAnimal) {
+        case 'lion':
+          moneyWon = randomNumber * 15;
+          break;
+        case 'elephant':
+          moneyWon = randomNumber * 8;
+          break;
+        case 'giraffe':
+          moneyWon = randomNumber * 12;
+          break;
+        case 'tiger':
+          moneyWon = randomNumber * 14;
+          break;
+        case 'penguin':
+          moneyWon = randomNumber * 10;
+          break;
+        case 'panda':
+          moneyWon = randomNumber * 18;
+          break;
+        case 'koala':
+          moneyWon = randomNumber * 20;
+          break;
+        case 'zebra':
+          moneyWon = randomNumber * 13;
+          break;
+        case 'dolphin':
+          moneyWon = randomNumber * 16;
+          break;
+        case 'cheetah':
+          moneyWon = randomNumber * 17;
+          break;
+        case 'peacock':
+          moneyWon = randomNumber * 11;
+          break;
+        case 'rhinoceros':
+          moneyWon = randomNumber * 19;
+          break;
+        default:
+          moneyWon = 0;
+      }
+
+      document.getElementById('result').innerText = `Congratulations! You won $${moneyWon}.`;
+    }
+  </script>
+</div>
+
+</body>
+</html>
