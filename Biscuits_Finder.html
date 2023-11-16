@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biscuits Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        #biscuits-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px;
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="biscuits-container">
+        <h2>Biscuits Finder</h2>
+        <label for="firstLetter">Enter the first letter:</label>
+        <input type="text" id="firstLetter" maxlength="1" placeholder="e.g., B" oninput="filterBiscuits()">
+        <button onclick="filterBiscuits()">Find Biscuits</button>
+
+        <ul id="result"></ul>
+    </div>
+
+    <script>
+        const biscuitsList = [
+            'Bourbon',
+            'Britannia',
+            'Digestive',
+            'Oreo',
+            'Parle-G',
+            'McVitie’s',
+            'Marie',
+            'Nice',
+            'Arrowroot',
+            'Ginger Nut',
+            'Chocolate Chip',
+            'Shortbread',
+            'Cream Crackers',
+            'Jammy Dodgers',
+            'Custard Creams',
+            'Rich Tea',
+            'Hobnobs',
+            'Jammie Wagon Wheels',
+            'Lemon Puff',
+            'Fig Rolls'
+        ];
+
+        function filterBiscuits() {
+            const firstLetter = document.getElementById('firstLetter').value.toUpperCase();
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerHTML = '';
+
+            const filteredBiscuits = biscuitsList.filter(biscuit => biscuit.toUpperCase().startsWith(firstLetter));
+
+            if (filteredBiscuits.length > 0) {
+                filteredBiscuits.forEach(biscuit => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = biscuit;
+                    resultContainer.appendChild(listItem);
+                });
+            } else {
+                resultContainer.innerHTML = '<p>No biscuits found with the specified first letter.</p>';
+            }
+        }
+    </script>
+
+</body>
+</html>
