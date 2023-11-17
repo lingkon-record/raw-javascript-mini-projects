@@ -1,0 +1,71 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historical Heroes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      margin-bottom: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Historical Heroes</h1>
+
+  <label for="startYear">Start Year:</label>
+  <input type="text" id="startYear" placeholder="Enter start year">
+
+  <label for="endYear">End Year:</label>
+  <input type="text" id="endYear" placeholder="Enter end year">
+
+  <button onclick="showHeroes()">Submit</button>
+
+  <ul id="heroesList"></ul>
+
+  <script>
+    const heroes = [
+      { name: "Alexander the Great", battle: "Battle of Gaugamela", opponent: "Darius III", year: 331 },
+      { name: "Joan of Arc", battle: "Siege of Orléans", opponent: "English forces", year: 1429 },
+      { name: "Horatio Nelson", battle: "Battle of Trafalgar", opponent: "Combined French and Spanish fleets", year: 1805 },
+      // Add more heroes
+      { name: "George Washington", battle: "Siege of Yorktown", opponent: "British forces", year: 1781 },
+      { name: "Mansa Musa", battle: "Conquest of Mali Empire", opponent: "Various", year: 1312 }
+    ];
+
+    function showHeroes() {
+      const startYear = document.getElementById('startYear').value;
+      const endYear = document.getElementById('endYear').value;
+
+      const filteredHeroes = heroes.filter(hero => hero.year >= startYear && hero.year <= endYear);
+      displayHeroes(filteredHeroes);
+    }
+
+    function displayHeroes(heroes) {
+      const heroesList = document.getElementById('heroesList');
+      heroesList.innerHTML = '';
+
+      heroes.forEach(hero => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${hero.name} - ${hero.battle} against ${hero.opponent} (${hero.year})`;
+        heroesList.appendChild(listItem);
+      });
+    }
+  </script>
+
+</body>
+</html>
