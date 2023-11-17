@@ -1,0 +1,90 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <label for="experience">Job Experience (in years):</label>
+    <input type="number" id="experience" placeholder="Enter your job experience">
+
+    <label for="degree">Degree:</label>
+    <select id="degree">
+        <option value="highschool">High School</option>
+        <option value="bachelor">Bachelor's Degree</option>
+        <option value="master">Master's Degree</option>
+        <option value="phd">Ph.D.</option>
+    </select>
+
+    <button onclick="calculateSalary()">Calculate Salary</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateSalary() {
+            // Fetch user inputs
+            var name = document.getElementById('name').value;
+            var experience = parseFloat(document.getElementById('experience').value);
+            var degree = document.getElementById('degree').value;
+
+            // Set base salary
+            var baseSalary = 50000;
+
+            // Calculate salary based on experience
+            var experienceMultiplier = 2000; // Adjust this multiplier as needed
+            var experienceBonus = experience * experienceMultiplier;
+
+            // Calculate salary based on degree
+            var degreeMultiplier = {
+                'highschool': 1,
+                'bachelor': 1.5,
+                'master': 2,
+                'phd': 2.5
+            };
+            var degreeBonus = baseSalary * degreeMultiplier[degree];
+
+            // Total salary
+            var totalSalary = baseSalary + experienceBonus + degreeBonus;
+
+            // Display result
+            var resultElement = document.getElementById('result');
+            resultElement.innerHTML = `<p>${name}, based on your experience and degree, your estimated salary is: $${totalSalary.toFixed(2)}</p>`;
+        }
+    </script>
+
+</body>
+</html>
