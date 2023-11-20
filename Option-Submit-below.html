@@ -1,0 +1,54 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorite City List</title>
+  <style>
+    label {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="cityForm">
+    <label>
+      <input type="checkbox" name="city" value="New York"> New York
+    </label>
+    <label>
+      <input type="checkbox" name="city" value="Paris"> Paris
+    </label>
+    <label>
+      <input type="checkbox" name="city" value="Tokyo"> Tokyo
+    </label>
+
+    <button type="button" onclick="showSelectedCities()">Submit</button>
+  </form>
+
+  <div id="selectedCities"></div>
+
+  <script>
+    function showSelectedCities() {
+      const selectedCities = document.querySelectorAll('input[name="city"]:checked');
+      const resultDiv = document.getElementById('selectedCities');
+
+      if (selectedCities.length > 0) {
+        resultDiv.innerHTML = "<p>Your favorite cities:</p>";
+        const citiesList = document.createElement('ul');
+
+        selectedCities.forEach(city => {
+          const listItem = document.createElement('li');
+          listItem.textContent = city.value;
+          citiesList.appendChild(listItem);
+        });
+
+        resultDiv.appendChild(citiesList);
+      } else {
+        resultDiv.innerHTML = "<p>No cities selected.</p>";
+      }
+    }
+  </script>
+
+</body>
+</html>
