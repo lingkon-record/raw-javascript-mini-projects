@@ -1,0 +1,74 @@
+ <!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>প্রিয় শহর তালিকা</title>
+  <style>
+    label {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="cityForm">
+    <label>
+      <input type="checkbox" name="city" value="নিউ ইয়র্ক"> নিউ ইয়র্ক
+    </label>
+    <label>
+      <input type="checkbox" name="city" value="প্যারিস"> প্যারিস
+    </label>
+    <label>
+      <input type="checkbox" name="city" value="টোকিও"> টোকিও
+    </label>
+
+    <label>
+      <input type="checkbox" name="city" value="লন্ডন"> লন্ডন
+    </label>
+    <label>
+      <input type="checkbox" name="city" value="সিডনি"> সিডনি
+    </label>
+    <label>
+      <input type="checkbox" name="city" value="দুবাই"> দুবাই
+    </label>
+
+    <label>
+      <input type="checkbox" name="city" value="লস এ্যাঞ্জেলেস"> লস এ্যাঞ্জেলেস
+    </label>
+    <label>
+      <input type="checkbox" name="city" value="রোম"> রোম
+    </label>
+    <label>
+      <input type="checkbox" name="city" value="বেইজিং"> বেইজিং
+    </label>
+
+    <button type="button" onclick="showSelectedCities()">জমা দিন</button>
+  </form>
+
+  <div id="selectedCities"></div>
+
+  <script>
+    function showSelectedCities() {
+      const selectedCities = document.querySelectorAll('input[name="city"]:checked');
+      const resultDiv = document.getElementById('selectedCities');
+
+      if (selectedCities.length >= 5) {
+        resultDiv.innerHTML = "<p>আপনার নির্বাচিত শহরগুলি:</p>";
+        const citiesList = document.createElement('ul');
+
+        for (let i = 0; i < 5; i++) {
+          const listItem = document.createElement('li');
+          listItem.textContent = selectedCities[i].value;
+          citiesList.appendChild(listItem);
+        }
+
+        resultDiv.appendChild(citiesList);
+      } else {
+        resultDiv.innerHTML = "<p>অনুগ্রহ করে অল্পতম 5 টি শহর নির্বাচন করুন।</p>";
+      }
+    }
+  </script>
+
+</body>
+</html>
