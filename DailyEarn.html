@@ -1,0 +1,124 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthly Cost Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      width: 400px;
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<form id="costCalculatorForm">
+  <h2>Monthly Cost Calculator</h2>
+
+  <label for="rent">Rent:</label>
+  <input type="number" id="rent" required>
+
+  <label for="food">Food Bill:</label>
+  <input type="number" id="food" required>
+
+  <label for="transport">Transport Fee:</label>
+  <input type="number" id="transport" required>
+
+  <label for="college">College Fee:</label>
+  <input type="number" id="college" required>
+
+  <label for="internet">Internet Bill:</label>
+  <input type="number" id="internet" required>
+
+  <label for="electric">Electric Bill:</label>
+  <input type="number" id="electric" required>
+
+  <label for="parents">Parents Cost:</label>
+  <input type="number" id="parents" required>
+
+  <button type="button" onclick="calculateCost()">Calculate</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateCost() {
+      // Retrieve input values
+      const rent = parseFloat(document.getElementById("rent").value) || 0;
+      const food = parseFloat(document.getElementById("food").value) || 0;
+      const transport = parseFloat(document.getElementById("transport").value) || 0;
+      const college = parseFloat(document.getElementById("college").value) || 0;
+      const internet = parseFloat(document.getElementById("internet").value) || 0;
+      const electric = parseFloat(document.getElementById("electric").value) || 0;
+      const parents = parseFloat(document.getElementById("parents").value) || 0;
+
+      // Calculate total monthly cost
+      const totalCost = rent + food + transport + college + internet + electric + parents;
+
+      // Calculate daily earnings needed
+      const daysInMonth = 30; // Assuming an average of 30 days in a month
+      const dailyEarningsNeeded = totalCost / daysInMonth;
+
+      // Display result
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = `
+        <h2>Monthly Cost Summary</h2>
+        <strong>Total Monthly Cost:</strong> $${totalCost.toFixed(2)}<br>
+        <strong>Daily Earnings Needed:</strong> $${dailyEarningsNeeded.toFixed(2)}
+      `;
+    }
+  </script>
+
+</form>
+
+</body>
+</html>
