@@ -1,0 +1,102 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math IQ Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    h1 {
+      color: #3498db;
+    }
+
+    .question {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #2ecc71;
+      color: #fff;
+      border: none;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Math IQ Test</h1>
+
+  <div class="question" id="question"></div>
+  <input type="text" id="answer" placeholder="Your Answer">
+  <button onclick="checkAnswer()">Submit Answer</button>
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      { question: "What is 2 + 2?", answer: 4 },
+      { question: "Solve for x: 3x - 7 = 14", answer: 7 },
+      { question: "What is the square root of 81?", answer: 9 },
+      // Add more questions as needed
+    ];
+
+    let currentQuestionIndex = 0;
+
+    function displayQuestion() {
+      const currentQuestion = questions[currentQuestionIndex];
+      document.getElementById('question').innerHTML = currentQuestion.question;
+    }
+
+    function checkAnswer() {
+      const userAnswer = parseInt(document.getElementById('answer').value);
+
+      if (!isNaN(userAnswer)) {
+        const currentQuestion = questions[currentQuestionIndex];
+
+        if (userAnswer === currentQuestion.answer) {
+          document.getElementById('result').innerHTML = 'Correct!';
+        } else {
+          document.getElementById('result').innerHTML = `Incorrect. The correct answer is ${currentQuestion.answer}.`;
+        }
+
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+          displayQuestion();
+        } else {
+          document.getElementById('question').innerHTML = 'Test complete!';
+          document.getElementById('answer').style.display = 'none';
+          document.getElementById('result').style.color = '#2ecc71';
+          document.getElementById('result').innerHTML = 'Congratulations! You have completed the test.';
+        }
+      } else {
+        document.getElementById('result').innerHTML = 'Please enter a valid number.';
+      }
+    }
+
+    // Initialize the test
+    displayQuestion();
+  </script>
+
+</body>
+</html>
