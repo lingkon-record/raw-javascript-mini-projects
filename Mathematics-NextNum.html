@@ -1,0 +1,60 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next Number Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Next Number Finder</h1>
+
+  <label for="sequence">Enter the sequence (comma-separated):</label>
+  <input type="text" id="sequence" placeholder="e.g., 2,4,6,8">
+
+  <button onclick="findNextNumber()">Find Next Number</button>
+
+  <div id="result"></div>
+
+  <script>
+    function findNextNumber() {
+      const sequenceInput = document.getElementById('sequence').value;
+      const sequenceArray = sequenceInput.split(',').map(Number);
+
+      if (sequenceArray.length >= 2) {
+        const diff = sequenceArray[1] - sequenceArray[0];
+        const nextNumber = sequenceArray[sequenceArray.length - 1] + diff;
+
+        document.getElementById('result').innerHTML = `Next Number: ${nextNumber}`;
+      } else {
+        document.getElementById('result').innerHTML = 'Please enter a valid sequence.';
+      }
+    }
+  </script>
+
+</body>
+</html>
