@@ -1,0 +1,106 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f8f9fa;
+    }
+
+    #quote-container {
+      text-align: center;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h2 {
+      color: #343a40;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      color: #495057;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+      color: #495057;
+    }
+  </style>
+</head>
+<body>
+  <div id="quote-container">
+    <h2>Quote Generator</h2>
+    <label for="quote">Quote:</label>
+    <textarea id="quote" rows="4" cols="50" placeholder="Enter your quote..."></textarea>
+
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" placeholder="Author's name">
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date">
+
+    <button onclick="generateQuote()">Generate Quote</button>
+
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function generateUniqueCode() {
+      return Math.random().toString(36).substr(2, 9);
+    }
+
+    function generateQuote() {
+      const quote = document.getElementById('quote').value;
+      const author = document.getElementById('author').value;
+      const date = document.getElementById('date').value;
+      const uniqueCode = generateUniqueCode();
+
+      const outputContainer = document.getElementById('output');
+      outputContainer.innerHTML = `
+        <p><strong>Quote:</strong> ${quote}</p>
+        <p><strong>Author:</strong> ${author}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Unique Code:</strong> ${uniqueCode}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
