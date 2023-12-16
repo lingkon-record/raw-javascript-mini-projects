@@ -1,0 +1,85 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Child Age Calculation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 50px;
+      background-color: #f7f7f7;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #output {
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .result {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <h2>Child Age Calculation</h2>
+
+  <button onclick="calculate()">Generate Lucky Digit and Calculate</button>
+
+  <div id="output"></div>
+
+  <script>
+    function calculate() {
+      // Generate random ages for four children (1-10)
+      const childAges = Array.from({ length: 4 }, () => Math.floor(Math.random() * 10) + 1);
+
+      // Perform subtraction and display output
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = ''; // Clear previous output
+
+      childAges.forEach((age, i) => {
+        // Generate a new lucky digit for each child (0-9)
+        const luckyDigit = Math.floor(Math.random() * 10);
+        const result = age - luckyDigit;
+
+        // Create result div
+        const resultDiv = document.createElement('div');
+        resultDiv.className = 'result';
+        resultDiv.innerHTML = `
+          <strong>Child ${i + 1}:</strong> 
+          Age: ${age}, 
+          Lucky Digit: ${luckyDigit}, 
+          Result: ${age} - ${luckyDigit} = ${result}
+        `;
+
+        // Append result div to output
+        outputDiv.appendChild(resultDiv);
+      });
+    }
+  </script>
+</body>
+</html>
