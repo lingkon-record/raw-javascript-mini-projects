@@ -1,0 +1,115 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangladeshi Student Information</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        #inputContainer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #uniqueCodeInput {
+            padding: 10px;
+            margin-right: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        #infoContainer {
+            display: none;
+            max-width: 600px;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        #infoContainer div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="inputContainer">
+        <h2>Bangladeshi Student Information</h2>
+        <input type="text" id="uniqueCodeInput" placeholder="Enter unique code">
+        <button onclick="showStudentInfo()">Show Information</button>
+    </div>
+
+    <div id="infoContainer">
+        <div id="name"></div>
+        <div id="fatherName"></div>
+        <div id="age"></div>
+        <div id="district"></div>
+        <div id="university"></div>
+        <div id="subject"></div>
+        <div id="bloodGroup"></div>
+        <div id="mobileNo"></div>
+    </div>
+
+    <script>
+        const studentList = {
+            "123456": {
+                name: "John Doe",
+                fatherName: "David Doe",
+                age: 20,
+                district: "Dhaka",
+                university: "Dhaka University",
+                subject: "Computer Science",
+                bloodGroup: "A+",
+                mobileNo: "0123456789"
+            },
+            "789012": {
+                name: "Jane Doe",
+                fatherName: "Michael Doe",
+                age: 22,
+                district: "Chittagong",
+                university: "Chittagong University",
+                subject: "Business Administration",
+                bloodGroup: "B-",
+                mobileNo: "9876543210"
+            },
+            // Add more students as needed
+        };
+
+        function showStudentInfo() {
+            const uniqueCode = document.getElementById('uniqueCodeInput').value;
+            const infoContainer = document.getElementById('infoContainer');
+
+            if (studentList.hasOwnProperty(uniqueCode)) {
+                const student = studentList[uniqueCode];
+                Object.keys(student).forEach(key => {
+                    document.getElementById(key).textContent = `${capitalizeFirstLetter(key)}: ${student[key]}`;
+                });
+
+                infoContainer.style.display = 'block';
+            } else {
+                alert("Student not found. Please check the unique code.");
+            }
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+    </script>
+
+</body>
+</html>
