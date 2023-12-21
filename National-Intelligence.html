@@ -1,0 +1,94 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakistani City Codes and Names</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        #cityContainer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #cityCodeInput {
+            padding: 10px;
+            margin-right: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        #cityNameOutput {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        #cityDatalist {
+            display: none;
+        }
+
+        #infoText {
+            font-size: 14px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cityContainer">
+        <h2>Pakistani City Codes and Names</h2>
+
+        <input type="text" id="cityCodeInput" list="cityDatalist" placeholder="Enter city code">
+        <datalist id="cityDatalist">
+            <option value="ISB">Islamabad</option>
+            <option value="LHR">Lahore</option>
+            <option value="2580">Karachi</option>
+            <!-- Add more cities as needed -->
+        </datalist>
+
+        <div id="cityNameOutput"></div>
+        <p id="infoText">Start typing to see the city name.</p>
+    </div>
+
+    <script>
+        const cityCodeInput = document.getElementById('cityCodeInput');
+        const cityNameOutput = document.getElementById('cityNameOutput');
+        const infoText = document.getElementById('infoText');
+
+        cityCodeInput.addEventListener('input', showCityName);
+
+        function showCityName() {
+            const selectedCityCode = cityCodeInput.value.toUpperCase();
+            const datalistOptions = document.getElementById('cityDatalist').options;
+
+            for (let i = 0; i < datalistOptions.length; i++) {
+                const option = datalistOptions[i];
+                if (option.value.toUpperCase() === selectedCityCode) {
+                    cityNameOutput.textContent = `City Name: ${option.textContent}`;
+                    infoText.textContent = '';
+                    return;
+                }
+            }
+
+            // If no match found
+            cityNameOutput.textContent = '';
+            infoText.textContent = 'City not found. Please check the code.';
+        }
+    </script>
+
+</body>
+</html>
