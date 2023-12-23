@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #loginContainer {
+      text-align: center;
+    }
+
+    .inputBox {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    #submitButton {
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    #resultText {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div id="loginContainer">
+  <h2>Login Form</h2>
+  <input type="text" class="inputBox" id="userId" placeholder="Enter User ID">
+  <input type="password" class="inputBox" id="password" placeholder="Enter Password">
+  <button id="submitButton" onclick="validateLogin()">Submit</button>
+  <div id="resultText"></div>
+</div>
+
+<script>
+  const userCredentials = {
+    userId: "exampleUser",
+    password: "examplePassword"
+  };
+
+  function validateLogin() {
+    const enteredUserId = document.getElementById("userId").value;
+    const enteredPassword = document.getElementById("password").value;
+
+    if (enteredUserId === userCredentials.userId && enteredPassword === userCredentials.password) {
+      document.getElementById("resultText").textContent = "Login Successful!";
+    } else {
+      document.getElementById("resultText").textContent = "Wrong password. Please try again.";
+    }
+  }
+</script>
+
+</body>
+</html>
