@@ -1,0 +1,78 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+
+    #search-box {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    #search-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+  <title>Company Search</title>
+</head>
+<body>
+
+  <label for="search-box">Search for companies:</label>
+  <input type="text" id="search-box" list="companies" oninput="suggestCompanies(this.value)">
+  <button id="search-btn" onclick="searchCompanies()">Submit</button>
+
+  <!-- Datalist for autocomplete suggestions -->
+  <datalist id="companies">
+    <!-- Elon Musk's companies and approximate revenue -->
+    <option value="Tesla - $46 billion">
+    <option value="SpaceX - $46 million">
+    <option value="Neuralink - Not disclosed">
+    <option value="The Boring Company - Not disclosed">
+    <!-- Add more options as needed -->
+
+    <!-- Jeff Bezos's companies -->
+    <option value="Amazon - $386 billion">
+    <option value="Blue Origin - Not disclosed">
+    <!-- Add more options as needed -->
+  </datalist>
+
+  <div id="result"></div>
+
+  <script>
+    function suggestCompanies(input) {
+      // Display suggestions as you type (optional)
+      console.log(`Suggestions for "${input}"`);
+    }
+
+    function searchCompanies() {
+      // Fetch and display search results (here, just displaying a message)
+      let searchInput = document.getElementById('search-box').value;
+      let resultDiv = document.getElementById('result');
+      
+      if (searchInput.trim() !== '') {
+        resultDiv.innerHTML = `Results for "${searchInput}": Not implemented in this example. You'd get detailed information in a real application.`;
+      } else {
+        resultDiv.innerHTML = 'Please enter a company name.';
+      }
+    }
+  </script>
+
+</body>
+</html>
