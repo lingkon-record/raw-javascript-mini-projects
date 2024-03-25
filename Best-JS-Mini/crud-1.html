@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Input Manager</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.input-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-container input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.input-container button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-container button:hover {
+  background-color: #0056b3;
+}
+
+.list-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.list-item {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-item input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.list-item button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="input-container">
+    <input type="text" id="textInput" placeholder="Enter text">
+    <button id="submitBtn">Submit</button>
+  </div>
+
+  <div class="list-container" id="listContainer"></div>
+</div>
+
+<script>
+const submitBtn = document.getElementById('submitBtn');
+const textInput = document.getElementById('textInput');
+const listContainer = document.getElementById('listContainer');
+
+let items = [];
+
+submitBtn.addEventListener('click', function() {
+  const text = textInput.value.trim();
+  if (text === '') {
+    alert('Please enter some text.');
+    return;
+  }
+
+  items.push(text);
+  displayItems();
+  textInput.value = '';
+});
+
+function displayItems() {
+  listContainer.innerHTML = '';
+  items.forEach((item, index) => {
+    const listItem = document.createElement('div');
+    listItem.classList.add('list-item');
+    listItem.innerHTML = `
+      <input type="text" value="${item}" readonly>
+      <button class="btn-edit" onclick="editItem(${index})">Edit</button>
+      <button class="btn-delete" onclick="deleteItem(${index})">Delete</button>
+    `;
+    listContainer.appendChild(listItem);
+  });
+}
+
+function editItem(index) {
+  const newText = prompt('Enter new text:', items[index]);
+  if (newText !== null) {
+    items[index] = newText.trim();
+    displayItems();
+  }
+}
+
+function deleteItem(index) {
+  if (confirm('Are you sure you want to delete this item?')) {
+    items.splice(index, 1);
+    displayItems();
+  }
+}
+</script>
+
+</body>
+</html>
