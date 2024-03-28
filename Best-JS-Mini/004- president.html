@@ -1,0 +1,41 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find USA President</title>
+</head>
+<body>
+
+<h2>Type any year, Find USA President</h2>
+
+<label for="year">Year:</label>
+<input type="number" id="year">
+
+<button onclick="findPresident()">Find President</button>
+
+<p id="presidentName"></p>
+
+<script>
+const presidents = [
+    { name: "Joe Biden", startYear: 2021, endYear: 2024 },
+    { name: "Donald Trump", startYear: 2017, endYear: 2020 },
+    { name: "Barack Obama", startYear: 2009, endYear: 2012 },
+    // Add more presidents as needed
+];
+
+function findPresident() {
+    const year = parseInt(document.getElementById("year").value);
+    
+    const presidentData = presidents.find(president => year >= president.startYear && year <= president.endYear);
+    
+    if (presidentData) {
+        document.getElementById("presidentName").textContent = `USA President for ${year}: ${presidentData.name}`;
+    } else {
+        document.getElementById("presidentName").textContent = "No president found for the given year.";
+    }
+}
+</script>
+
+</body>
+</html>
