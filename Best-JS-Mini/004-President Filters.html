@@ -1,0 +1,68 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find President</title>
+</head>
+<body>
+
+<h2>Find President</h2>
+
+<label for="country">Country:</label>
+<input type="text" id="country">
+
+<label for="year">Year:</label>
+<input type="number" id="year">
+
+<button onclick="findPresident()">Find President</button>
+
+<p id="presidentName"></p>
+
+<script>
+const leaders = [
+    { country: "USA", year: 2024, president: "Joe Biden" },
+    { country: "USA", year: 2020, president: "Donald Trump" },
+    { country: "USA", year: 2016, president: "Barack Obama" },
+    { country: "USA", year: 2012, president: "Barack Obama" },
+    { country: "USA", year: 2008, president: "George W. Bush" },
+    { country: "USA", year: 2004, president: "George W. Bush" },
+    { country: "USA", year: 2000, president: "Bill Clinton" },
+    { country: "UK", year: 2024, primeMinister: "Boris Johnson" },
+    { country: "UK", year: 2019, primeMinister: "Boris Johnson" },
+    { country: "UK", year: 2016, primeMinister: "Theresa May" },
+    { country: "UK", year: 2010, primeMinister: "David Cameron" },
+    { country: "France", year: 2022, president: "Emmanuel Macron" },
+    { country: "France", year: 2017, president: "Emmanuel Macron" },
+    { country: "France", year: 2012, president: "François Hollande" },
+    { country: "France", year: 2007, president: "Nicolas Sarkozy" },
+    { country: "Russia", year: 2024, president: "Vladimir Putin" },
+    { country: "Russia", year: 2018, president: "Vladimir Putin" },
+    { country: "Russia", year: 2012, president: "Vladimir Putin" },
+    { country: "Russia", year: 2008, president: "Dmitry Medvedev" },
+    { country: "Germany", year: 2021, chancellor: "Angela Merkel" },
+    { country: "Germany", year: 2017, chancellor: "Angela Merkel" },
+    { country: "Germany", year: 2013, chancellor: "Angela Merkel" },
+    { country: "Germany", year: 2009, chancellor: "Angela Merkel" },
+    { country: "Turkey", year: 2018, president: "Recep Tayyip Erdoğan" },
+    { country: "Turkey", year: 2014, president: "Recep Tayyip Erdoğan" },
+    { country: "Turkey", year: 2009, president: "Abdullah Gül" },
+    { country: "Turkey", year: 2007, president: "Abdullah Gül" }
+];
+
+function findPresident() {
+    const country = document.getElementById("country").value;
+    const year = parseInt(document.getElementById("year").value);
+    
+    const presidentData = leaders.find(leader => leader.country === country && leader.year === year && leader.president);
+    
+    if (presidentData) {
+        document.getElementById("presidentName").textContent = `President of ${country} in ${year}: ${presidentData.president}`;
+    } else {
+        document.getElementById("presidentName").textContent = "President data not found for the given country and year.";
+    }
+}
+</script>
+
+</body>
+</html>
