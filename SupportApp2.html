@@ -1,0 +1,66 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emotional Support App</title>
+</head>
+<body>
+
+<h2>Emotional Support App</h2>
+
+<label for="subject">Select Your Subject:</label>
+<select id="subject">
+  <option value="divorce">Divorce</option>
+  <option value="multiple_marriage">Multiple Marriages</option>
+  <option value="kids">Kids</option>
+  <option value="physical_relationship">Physical Relationship</option>
+  <option value="birth">Birth</option>
+  <option value="love">Love</option>
+  <option value="distance">Distance</option>
+</select>
+
+<button onclick="provideSupport()">Get Support</button>
+
+<p id="supportMessage"></p>
+
+<script>
+function provideSupport() {
+    const subject = document.getElementById("subject").value;
+    let supportMessage = "";
+
+    switch (subject) {
+        case "divorce":
+            supportMessage = "Going through a divorce is tough, but remember that you are not alone. Take one day at a time and prioritize self-care.";
+            break;
+        case "multiple_marriage":
+            supportMessage = "Navigating multiple marriages can be challenging. Communication, trust, and mutual respect are key to maintaining healthy relationships.";
+            break;
+        case "kids":
+            supportMessage = "Raising kids is a rewarding journey, but it's also normal to feel overwhelmed at times. Reach out for support from family, friends, or professionals.";
+            break;
+        case "physical_relationship":
+            supportMessage = "Physical intimacy is an important aspect of relationships. Ensure open communication, mutual consent, and respect for each other's boundaries.";
+            break;
+        case "birth":
+            supportMessage = "Welcoming a new life into the world is a joyous occasion. Remember to take care of yourself and seek support from loved ones during this transformative time.";
+            break;
+        case "love":
+            supportMessage = "Love is a beautiful journey with its ups and downs. Cherish the good moments, learn from the challenges, and always communicate openly with your partner.";
+            break;
+        case "distance":
+            supportMessage = "Maintaining a long-distance relationship can be tough, but it's possible with trust, communication, and dedication. Stay connected and plan regular visits.";
+            break;
+        default:
+            supportMessage = "Remember, it's okay to seek help and support when facing difficult situations. You are not alone.";
+            break;
+    }
+
+    document.getElementById("supportMessage").textContent = supportMessage;
+}
+</script>
+
+</body>
+</html>
