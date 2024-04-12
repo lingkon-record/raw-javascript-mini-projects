@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Analysis</title>
+<style>
+  textarea {
+    width: 100%;
+    height: 200px;
+    resize: none;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+  <textarea id="textInput" placeholder="Enter your text here..."></textarea>
+  <button onclick="analyzeText()">Submit</button>
+  <div id="report"></div>
+
+  <script>
+    function analyzeText() {
+      var text = document.getElementById('textInput').value;
+      
+      // Counting sentences
+      var sentences = text.split(/[.!?]+/).length - 1;
+      
+      // Counting words
+      var words = text.match(/\w+/g).length;
+      
+      // Counting lines
+      var lines = text.split(/\r\n|\r|\n/).length;
+      
+      // Displaying the report
+      var report = document.getElementById('report');
+      report.innerHTML = `
+        <p>Total Sentences: ${sentences}</p>
+        <p>Total Words: ${words}</p>
+        <p>Total Lines: ${lines}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
