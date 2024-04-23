@@ -1,0 +1,144 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Numbers</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%;
+  }
+
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .contact-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+
+  .contact-item span {
+    color: #333;
+  }
+
+  .serial {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #007bff;
+  }
+
+  .contact-numbers {
+    display: none;
+    margin-top: 10px;
+  }
+
+  .number {
+    display: block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+
+  .number-1 {
+    background-color: #ffd700;
+  }
+
+  .number-2 {
+    background-color: #00ff00;
+  }
+
+  .number-3 {
+    background-color: #ff0000;
+  }
+
+  @media screen and (max-width: 600px) {
+    .contact-item {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Contact Numbers</h1>
+  <ul class="contact-list">
+    <li class="contact-item" onclick="displayNumbers('Sakil')"><span class="serial">1.</span> Sakil</li>
+    <li class="contact-item" onclick="displayNumbers('RAKIB')"><span class="serial">2.</span> RAKIB</li>
+    <li class="contact-item" onclick="displayNumbers('Rajib')"><span class="serial">3.</span> Rajib</li>
+  </ul>
+  <div class="contact-numbers" id="contactNumbers"></div>
+</div>
+
+<script>
+  function displayNumbers(contact) {
+    var sakilNumbers = ["0171472982", "0156383947", "016838494"];
+    var rakibNumbers = ["019674884", "018367394", "016374994"];
+    var rajibNumbers = ["0138378393", "0178378394", "0149487483"];
+    var numbers;
+
+    switch (contact) {
+      case 'Sakil':
+        numbers = sakilNumbers;
+        break;
+      case 'RAKIB':
+        numbers = rakibNumbers;
+        break;
+      case 'Rajib':
+        numbers = rajibNumbers;
+        break;
+      default:
+        numbers = [];
+    }
+
+    var contactNumbersElement = document.getElementById("contactNumbers");
+    contactNumbersElement.innerHTML = "";
+
+    numbers.forEach(function(number, index) {
+      var numberElement = document.createElement("span");
+      numberElement.textContent = "Number " + (index + 1) + ": " + number;
+      numberElement.classList.add("number", "number-" + (index + 1));
+      contactNumbersElement.appendChild(numberElement);
+    });
+
+    contactNumbersElement.style.display = "block";
+  }
+</script>
+</body>
+</html>
