@@ -1,0 +1,102 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Numbers</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    text-align: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .contact-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-item {
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-item span {
+    color: #333;
+  }
+
+  .serial {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #007bff;
+  }
+
+  .contact-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+  }
+
+  .contact-button:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Contact Numbers</h1>
+  <ul class="contact-list">
+    <li class="contact-item"><span class="serial">1.</span> Sakil: <span id="sakil"></span></li>
+    <li class="contact-item"><span class="serial">2.</span> RAKIB: <span id="rakib"></span></li>
+    <li class="contact-item"><span class="serial">3.</span> Rajib: <span id="rajib"></span></li>
+  </ul>
+  <button class="contact-button" onclick="displayNumbers()">Show Numbers</button>
+</div>
+
+<script>
+  function displayNumbers() {
+    var sakilNumbers = ["123456789", "987654321", "555555555"];
+    var rakibNumbers = ["111111111", "222222222", "333333333"];
+    var rajibNumbers = ["444444444", "555555555", "666666666"];
+
+    document.getElementById("sakil").textContent = sakilNumbers.join(", ");
+    document.getElementById("rakib").textContent = rakibNumbers.join(", ");
+    document.getElementById("rajib").textContent = rajibNumbers.join(", ");
+  }
+</script>
+</body>
+</html>
