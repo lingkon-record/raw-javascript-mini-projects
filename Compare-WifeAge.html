@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age and Marriage Duration Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    input {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Age and Marriage Duration Calculator</h1>
+  <label for="myDob">Your Date of Birth:</label><br>
+  <input type="date" id="myDob"><br>
+  <label for="wifeDob">Wife's Date of Birth:</label><br>
+  <input type="date" id="wifeDob"><br>
+  <label for="marriageDate">Marriage Date:</label><br>
+  <input type="date" id="marriageDate"><br>
+  <button onclick="calculate()">Calculate</button><br>
+  <div id="result"></div>
+
+  <script>
+    function calculate() {
+      var myDob = new Date(document.getElementById("myDob").value);
+      var wifeDob = new Date(document.getElementById("wifeDob").value);
+      var marriageDate = new Date(document.getElementById("marriageDate").value);
+
+      var today = new Date();
+
+      var myAge = calculateAge(myDob, today);
+      var wifeAge = calculateAge(wifeDob, today);
+
+      var ageDifference = calculateAgeDifference(myDob, wifeDob);
+
+      var marriageDuration = calculateDuration(marriageDate, today);
+
+      var resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "Your age: " + myAge + "<br>";
+      resultDiv.innerHTML += "Wife's age: " + wifeAge + "<br>";
+      resultDiv.innerHTML += "Age difference: " + ageDifference + "<br>";
+      resultDiv.innerHTML += "Marriage duration: " + marriageDuration;
+    }
+
+    function calculateAge(birthDate, endDate) {
+      var yearsDiff = endDate.getFullYear() - birthDate.getFullYear();
+      var monthsDiff = endDate.getMonth() - birthDate.getMonth();
+      var daysDiff = endDate.getDate() - birthDate.getDate();
+
+      if (monthsDiff < 0 || (monthsDiff === 0 && daysDiff < 0)) {
+        yearsDiff--;
+        monthsDiff += (monthsDiff < 0 ? 12 : 0);
+      }
+
+      if (daysDiff < 0) {
+        var tempDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1, birthDate.getDate());
+        var daysInMonth = new Date(tempDate.getFullYear(), tempDate.getMonth() + 1, 0).getDate();
+        daysDiff += daysInMonth;
+        monthsDiff--;
+      }
+
+      return yearsDiff + " years, " + monthsDiff + " months, " + daysDiff + " days";
+    }
+
+    function calculateAgeDifference(date1, date2) {
+      var years1 = date2.getFullYear() - date1.getFullYear();
+      var months1 = date2.getMonth() - date1.getMonth();
+      var days1 = date2.getDate() - date1.getDate();
+
+      if (months1 < 0 || (months1 === 0 && days1 < 0)) {
+        years1--;
+        months1 += (months1 < 0 ? 12 : 0);
+      }
+
+      if (days1 < 0) {
+        var tempDate = new Date(date2.getFullYear(), date2.getMonth() - 1, date1.getDate());
+        var daysInMonth = new Date(tempDate.getFullYear(), tempDate.getMonth() + 1, 0).getDate();
+        days1 += daysInMonth;
+        months1--;
+      }
+
+      if (years1 > 0) {
+        return years1 + " years, " + months1 + " months, " + days1 + " days older";
+      } else {
+        return "Same age";
+      }
+    }
+
+    function calculateDuration(startDate, endDate) {
+      var yearsDiff = endDate.getFullYear() - startDate.getFullYear();
+      var monthsDiff = endDate.getMonth() - startDate.getMonth();
+      var daysDiff = endDate.getDate() - startDate.getDate();
+
+      if (monthsDiff < 0 || (monthsDiff === 0 && daysDiff < 0)) {
+        yearsDiff--;
+        monthsDiff += (monthsDiff < 0 ? 12 : 0);
+      }
+
+      if (daysDiff < 0) {
+        var tempDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1, startDate.getDate());
+        var daysInMonth = new Date(tempDate.getFullYear(), tempDate.getMonth() + 1, 0).getDate();
+        daysDiff += daysInMonth;
+        monthsDiff--;
+      }
+
+      return yearsDiff + " years, " + monthsDiff + " months, " + daysDiff + " days";
+    }
+  </script>
+</body>
+</html>
