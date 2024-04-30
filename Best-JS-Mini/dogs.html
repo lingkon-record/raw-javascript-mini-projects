@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASCII Art Dog</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .dog {
+      position: relative;
+    }
+
+    .head {
+      width: 100px;
+      height: 100px;
+      background-color: #9e7a7a;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .body {
+      width: 150px;
+      height: 100px;
+      background-color: #9e7a7a;
+      border-radius: 50px 50px 0 0;
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .legs {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .leg {
+      width: 20px;
+      height: 50px;
+      background-color: #9e7a7a;
+      position: relative;
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    .leg::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background-color: #9e7a7a;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="dog">
+    <div class="head"></div>
+    <div class="body"></div>
+    <div class="legs">
+      <div class="leg"></div>
+      <div class="leg"></div>
+      <div class="leg"></div>
+      <div class="leg"></div>
+    </div>
+  </div>
+</body>
+</html>

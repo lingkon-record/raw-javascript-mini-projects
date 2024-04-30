@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog Design</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .dog {
+      width: 300px;
+      height: 200px;
+      position: relative;
+    }
+
+    .body {
+      width: 200px;
+      height: 100px;
+      background-color: #9e7a7a;
+      border-radius: 0 0 100px 100px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .head {
+      width: 150px;
+      height: 150px;
+      background-color: #9e7a7a;
+      border-radius: 50%;
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .ear {
+      width: 50px;
+      height: 50px;
+      background-color: #9e7a7a;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .ear.left {
+      top: -40px;
+      left: 20%;
+      transform: rotate(30deg);
+      z-index: 3;
+    }
+
+    .ear.right {
+      top: -40px;
+      right: 20%;
+      transform: rotate(-30deg);
+      z-index: 3;
+    }
+
+    .eye {
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .eye.left {
+      top: 30px;
+      left: 40%;
+    }
+
+    .eye.right {
+      top: 30px;
+      right: 40%;
+    }
+
+    .nose {
+      width: 20px;
+      height: 20px;
+      background-color: black;
+      border-radius: 50%;
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .mouth {
+      width: 60px;
+      height: 10px;
+      border: 2px solid black;
+      border-top: none;
+      border-radius: 0 0 30px 30px;
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .tail {
+      width: 80px;
+      height: 30px;
+      background-color: #9e7a7a;
+      border-radius: 0 0 50px 50px;
+      position: absolute;
+      bottom: 30px;
+      right: -40px;
+      transform: rotate(45deg);
+    }
+
+    .leg {
+      width: 10px;
+      height: 50px;
+      background-color: #9e7a7a;
+      position: absolute;
+    }
+
+    .front-leg.left {
+      bottom: 0;
+      left: 20px;
+    }
+
+    .front-leg.right {
+      bottom: 0;
+      left: 50px;
+    }
+
+    .back-leg.left {
+      bottom: 0;
+      left: 110px;
+    }
+
+    .back-leg.right {
+      bottom: 0;
+      left: 140px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dog">
+    <div class="body"></div>
+    <div class="head">
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+      <div class="nose"></div>
+      <div class="mouth"></div>
+    </div>
+    <div class="tail"></div>
+    <div class="leg front-leg left"></div>
+    <div class="leg front-leg right"></div>
+    <div class="leg back-leg left"></div>
+    <div class="leg back-leg right"></div>
+  </div>
+</body>
+</html>
