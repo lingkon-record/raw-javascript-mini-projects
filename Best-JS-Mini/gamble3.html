@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future Prediction Gimble Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .wheel {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto;
+      background: radial-gradient(circle, #f9f9f9, #d8d8d8);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .wheel-inner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 50%;
+    }
+
+    .option {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(0deg);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 20px solid black;
+      z-index: 10;
+    }
+
+    .spin-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .spin-btn:hover {
+      background-color: #45a049;
+    }
+
+    .prediction-result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="wheel">
+      <div class="arrow"></div>
+      <div class="wheel-inner">
+        <div class="option">A dragon will cross your path.</div>
+        <div class="option">You will find a hidden treasure in the forest.</div>
+        <div class="option">A wizard will grant you a wish.</div>
+        <div class="option">You will embark on a great quest.</div>
+        <div class="option">A magical creature will befriend you.</div>
+        <div class="option">You will discover a secret passage in a castle.</div>
+      </div>
+    </div>
+    <button class="spin-btn">Spin</button>
+    <div class="prediction-result"></div>
+  </div>
+  <script>
+    document.querySelector('.spin-btn').addEventListener('click', spinWheel);
+
+    function spinWheel() {
+      const wheel = document.querySelector('.wheel-inner');
+      const options = document.querySelectorAll('.option');
+      const arrow = document.querySelector('.arrow');
+      const resultDisplay = document.querySelector('.prediction-result');
+
+      const angle = Math.floor(Math.random() * 360) + 360 * 5;
+
+      wheel.style.transition = 'transform 5s ease-out';
+      wheel.style.transform = `rotate(${angle}deg)`;
+
+      document.querySelector('.spin-btn').disabled = true;
+
+      setTimeout(() => {
+        const selectedOption = Math.floor(((angle % 360) / (360 / options.length)));
+        resultDisplay.textContent = `You got: ${options[selectedOption].textContent}`;
+        document.querySelector('.spin-btn').disabled = false;
+      }, 5000);
+    }
+  </script>
+</body>
+</html>

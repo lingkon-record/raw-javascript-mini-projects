@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.wheel {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 2px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.wheel-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+}
+
+.option {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid black;
+}
+
+.spin-btn {
+  margin-top: 20px;
+}
+
+.prediction-result {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="wheel">
+        <div class="arrow"></div>
+        <div class="wheel-inner">
+          <!-- You can dynamically generate options based on your predictions -->
+          <div class="option">Prediction 1</div>
+          <div class="option">Prediction 2</div>
+          <div class="option">Prediction 3</div>
+          <!-- Add more options as needed -->
+        </div>
+      </div>
+      <button class="spin-btn">Spin</button>
+      <div class="prediction-result"></div>
+    </div>
+ 
+    
+
+    <script>
+        document.querySelector('.spin-btn').addEventListener('click', spinWheel);
+
+function spinWheel() {
+  const wheel = document.querySelector('.wheel-inner');
+  const options = document.querySelectorAll('.option');
+  const arrow = document.querySelector('.arrow');
+  const resultDisplay = document.querySelector('.prediction-result');
+
+  // Calculate a random angle to spin the wheel
+  const angle = Math.floor(Math.random() * 360) + 360 * 5;
+
+  // Spin the wheel
+  wheel.style.transition = 'transform 5s ease-out';
+  wheel.style.transform = `rotate(${angle}deg)`;
+
+  // Disable spin button during animation
+  document.querySelector('.spin-btn').disabled = true;
+
+  // After animation completes, determine the selected option
+  setTimeout(() => {
+    const selectedOption = Math.floor(((angle % 360) / (360 / options.length)));
+    resultDisplay.textContent = `You got: ${options[selectedOption].textContent}`;
+    document.querySelector('.spin-btn').disabled = false;
+  }, 5000); // 5000ms = 5 seconds
+}
+
+    </script>
+</body>
+</html>
