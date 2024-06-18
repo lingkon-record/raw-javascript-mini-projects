@@ -1,0 +1,103 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Search</title>
+    <style>
+        /* Tailwind CSS equivalent */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7fafc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 16px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+        }
+        .blog {
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .blog:last-child {
+            border-bottom: none;
+        }
+        .blog-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blog Search</h1>
+        <input type="text" id="searchInput" placeholder="Search by title...">
+        <div id="blogsContainer"></div>
+    </div>
+    
+    <script>
+        const blogs = [
+            { title: 'React Basics', content: 'This blog covers the basics of React.' },
+            { title: 'Advanced React', content: 'This blog covers advanced React concepts.' },
+            { title: 'Introduction to Tailwind CSS', content: 'This blog introduces Tailwind CSS.' },
+            { title: 'Using React with Tailwind CSS', content: 'This blog shows how to use Tailwind CSS with React.' },
+            { title: 'State Management in React', content: 'This blog discusses state management in React.' },
+        ];
+
+        const searchInput = document.getElementById('searchInput');
+        const blogsContainer = document.getElementById('blogsContainer');
+
+        function displayBlogs(blogsToDisplay) {
+            blogsContainer.innerHTML = '';
+            blogsToDisplay.forEach(blog => {
+                const blogDiv = document.createElement('div');
+                blogDiv.className = 'blog';
+
+                const blogTitle = document.createElement('h2');
+                blogTitle.className = 'blog-title';
+                blogTitle.textContent = blog.title;
+
+                const blogContent = document.createElement('p');
+                blogContent.textContent = blog.content;
+
+                blogDiv.appendChild(blogTitle);
+                blogDiv.appendChild(blogContent);
+                blogsContainer.appendChild(blogDiv);
+            });
+        }
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredBlogs = blogs.filter(blog =>
+                blog.title.toLowerCase().includes(searchTerm)
+            );
+            displayBlogs(filteredBlogs);
+        });
+
+        // Display all blogs initially
+        displayBlogs(blogs);
+    </script>
+</body>
+</html>
