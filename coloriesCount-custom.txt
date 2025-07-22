@@ -1,0 +1,119 @@
+prompt :
+make a two part/section.
+
+One, analysis part, input.
+Like, Fish weight, Fish calories. I will input it directly by doctor data.
+
+Then, another part/section.
+Ask me : your fish weight, the submit,  and then calculate this fish calories based one doctor data analysis. And show me calories results of that weight type fish.
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fish Calorie Calculator</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+  h2 { border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+  label { display: block; margin-top: 10px; }
+  input[type=number] { width: 100%; padding: 8px; margin-top: 5px; }
+  button { margin-top: 15px; padding: 10px 15px; cursor: pointer; }
+  #analysisList { margin-top: 15px; border: 1px solid #ccc; padding: 10px; max-height: 150px; overflow-y: auto; }
+  #result { margin-top: 20px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h2>Part 1: Input Fish Data (Doctor's Analysis)</h2>
+<label for="fishWeightInput">Fish Weight (grams):</label>
+<input type="number" id="fishWeightInput" min="0" step="any" placeholder="e.g. 100" />
+
+<label for="fishCaloriesInput">Calories for this Weight:</label>
+<input type="number" id="fishCaloriesInput" min="0" step="any" placeholder="e.g. 150" />
+
+<button id="addDataBtn">Add Fish Data</button>
+
+<div id="analysisList"><em>No fish data added yet.</em></div>
+
+<hr />
+
+<h2>Part 2: Calculate Calories</h2>
+<label for="userFishWeight">Enter Your Fish Weight (grams):</label>
+<input type="number" id="userFishWeight" min="0" step="any" placeholder="e.g. 75" />
+
+<button id="calculateBtn">Calculate Calories</button>
+
+<div id="result"></div>
+
+<script>
+  const fishData = [];
+
+  const analysisList = document.getElementById('analysisList');
+  const fishWeightInput = document.getElementById('fishWeightInput');
+  const fishCaloriesInput = document.getElementById('fishCaloriesInput');
+  const addDataBtn = document.getElementById('addDataBtn');
+
+  const userFishWeight = document.getElementById('userFishWeight');
+  const calculateBtn = document.getElementById('calculateBtn');
+  const result = document.getElementById('result');
+
+  function updateAnalysisList() {
+    if(fishData.length === 0) {
+      analysisList.innerHTML = '<em>No fish data added yet.</em>';
+      return;
+    }
+    let html = '<ul>';
+    fishData.forEach((item, idx) => {
+      html += `<li>Weight: ${item.weight}g — Calories: ${item.calories}</li>`;
+    });
+    html += '</ul>';
+    analysisList.innerHTML = html;
+  }
+
+  addDataBtn.addEventListener('click', () => {
+    const weight = parseFloat(fishWeightInput.value);
+    const calories = parseFloat(fishCaloriesInput.value);
+    if(isNaN(weight) || weight <= 0 || isNaN(calories) || calories <= 0) {
+      alert('Please enter valid positive numbers for both weight and calories.');
+      return;
+    }
+    fishData.push({ weight, calories });
+    updateAnalysisList();
+    fishWeightInput.value = '';
+    fishCaloriesInput.value = '';
+  });
+
+  calculateBtn.addEventListener('click', () => {
+    const userWeight = parseFloat(userFishWeight.value);
+    if(isNaN(userWeight) || userWeight <= 0) {
+      alert('Please enter a valid positive number for your fish weight.');
+      return;
+    }
+    if(fishData.length === 0) {
+      alert('Please add fish data first in Part 1.');
+      return;
+    }
+
+    // Strategy: Find the closest weight in fishData and scale calories accordingly
+    // Or we can do a linear interpolation if you want — but here let's do a simple proportional calculation
+    // Using average calories per gram from all data points:
+    let totalCalories = 0, totalWeight = 0;
+    fishData.forEach(item => {
+      totalCalories += item.calories;
+      totalWeight += item.weight;
+    });
+    const avgCaloriesPerGram = totalCalories / totalWeight;
+
+    const calculatedCalories = userWeight * avgCaloriesPerGram;
+
+    result.textContent = `Estimated Calories for ${userWeight}g fish: ${calculatedCalories.toFixed(2)} kcal`;
+  });
+</script>
+
+</body>
+</html>
