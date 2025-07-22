@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fish Calorie Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f1f5f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #0f172a;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 5px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      color: #334155;
+    }
+
+    input[type=number] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0284c7;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .list-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 15px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .list-box ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .result-box {
+      background-color: #e0f2fe;
+      color: #0c4a6e;
+      border-left: 5px solid #0284c7;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="section">
+      <h2>👨‍⚕️ Doctor's Analysis Input</h2>
+      <label for="fishWeightInput">Fish Weight (grams):</label>
+      <input type="number" id="fishWeightInput" placeholder="e.g. 100" />
+
+      <label for="fishCaloriesInput">Calories for this Weight:</label>
+      <input type="number" id="fishCaloriesInput" placeholder="e.g. 150" />
+
+      <button id="addDataBtn">Add Fish Data</button>
+
+      <div id="analysisList" class="list-box"><em>No data yet.</em></div>
+    </div>
+
+    <div class="section">
+      <h2>🍽️ Calculate Calories</h2>
+      <label for="userFishWeight">Your Fish Weight (grams):</label>
+      <input type="number" id="userFishWeight" placeholder="e.g. 75" />
+
+      <button id="calculateBtn">Calculate Calories</button>
+
+      <div id="result" class="result-box" style="display: none;"></div>
+    </div>
+  </div>
+
+  <script>
+    const fishData = [];
+
+    const analysisList = document.getElementById('analysisList');
+    const fishWeightInput = document.getElementById('fishWeightInput');
+    const fishCaloriesInput = document.getElementById('fishCaloriesInput');
+    const addDataBtn = document.getElementById('addDataBtn');
+
+    const userFishWeight = document.getElementById('userFishWeight');
+    const calculateBtn = document.getElementById('calculateBtn');
+    const result = document.getElementById('result');
+
+    function updateAnalysisList() {
+      if (fishData.length === 0) {
+        analysisList.innerHTML = '<em>No data yet.</em>';
+        return;
+      }
+      let html = '<ul>';
+      fishData.forEach(item => {
+        html += `<li><strong>${item.weight}g</strong> = ${item.calories} kcal</li>`;
+      });
+      html += '</ul>';
+      analysisList.innerHTML = html;
+    }
+
+    addDataBtn.addEventListener('click', () => {
+      const weight = parseFloat(fishWeightInput.value);
+      const calories = parseFloat(fishCaloriesInput.value);
+      if (isNaN(weight) || weight <= 0 || isNaN(calories) || calories <= 0) {
+        alert('Please enter valid numbers.');
+        return;
+      }
+      fishData.push({ weight, calories });
+      updateAnalysisList();
+      fishWeightInput.value = '';
+      fishCaloriesInput.value = '';
+    });
+
+    calculateBtn.addEventListener('click', () => {
+      const userWeight = parseFloat(userFishWeight.value);
+      if (isNaN(userWeight) || userWeight <= 0) {
+        alert('Enter a valid fish weight.');
+        return;
+      }
+      if (fishData.length === 0) {
+        alert('Please add fish data first.');
+        return;
+      }
+
+      let totalCalories = 0, totalWeight = 0;
+      fishData.forEach(item => {
+        totalCalories += item.calories;
+        totalWeight += item.weight;
+      });
+
+      const avgCaloriesPerGram = totalCalories / totalWeight;
+      const calculatedCalories = userWeight * avgCaloriesPerGram;
+
+      result.style.display = 'block';
+      result.textContent = `Your ${userWeight}g fish ≈ ${calculatedCalories.toFixed(2)} kcal`;
+    });
+  </script>
+</body>
+</html>
