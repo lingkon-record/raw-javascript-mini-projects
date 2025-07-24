@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>বয়স অনুযায়ী নাম খুঁজুন</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 220px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      display: inline-block;
+      text-align: left;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    li {
+      padding: 10px 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    .no-result {
+      color: #888;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>বয়স দিয়ে নাম খুঁজুন</h2>
+  <input type="number" id="ageInput" placeholder="বয়স লিখুন..." oninput="searchByAge()" />
+
+  <ul id="resultList"></ul>
+  <div class="no-result" id="noResult" style="display: none;">এই বয়সে কেউ নেই।</div>
+
+  <script>
+    const people = [
+      { name: "রহিম", age: 25 },
+      { name: "করিম", age: 30 },
+      { name: "শান্তা", age: 22 },
+      { name: "সুমন", age: 25 },
+      { name: "আনোয়ার", age: 28 },
+      { name: "মোমেনা", age: 30 },
+      { name: "নাহিদ", age: 22 },
+      { name: "রুবি", age: 27 },
+      { name: "হাসান", age: 25 },
+      { name: "তামান্না", age: 26 }
+    ];
+
+    function searchByAge() {
+      const age = parseInt(document.getElementById("ageInput").value);
+      const resultList = document.getElementById("resultList");
+      const noResult = document.getElementById("noResult");
+      resultList.innerHTML = "";
+
+      if (isNaN(age)) {
+        noResult.style.display = "none";
+        return;
+      }
+
+      const matches = people.filter(person => person.age === age);
+
+      if (matches.length > 0) {
+        noResult.style.display = "none";
+        matches.forEach(person => {
+          const li = document.createElement("li");
+          li.textContent = person.name;
+          resultList.appendChild(li);
+        });
+      } else {
+        noResult.style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>
