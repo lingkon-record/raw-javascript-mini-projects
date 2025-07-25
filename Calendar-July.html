@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendar - July 2025</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 28px;
+      color: #333;
+    }
+
+    .calendar {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .day-names, .week {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+    }
+
+    .day-names div, .day {
+      padding: 15px;
+      border: 1px solid #e0e0e0;
+      font-weight: bold;
+    }
+
+    .day-names div {
+      background-color: #eee;
+    }
+
+    .day {
+      font-weight: normal;
+    }
+
+    .day.blank {
+      background-color: #fafafa;
+      border: none;
+    }
+
+    @media (max-width: 500px) {
+      .day-names div, .day {
+        padding: 10px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📅 July 2025</h1>
+
+  <div class="calendar">
+    <div class="day-names">
+      <div>Sun</div>
+      <div>Mon</div>
+      <div>Tue</div>
+      <div>Wed</div>
+      <div>Thu</div>
+      <div>Fri</div>
+      <div>Sat</div>
+    </div>
+
+    <!-- First week: starts on Tuesday (so two blanks) -->
+    <div class="week">
+      <div class="day blank"></div>
+      <div class="day blank"></div>
+      <div class="day">1</div>
+      <div class="day">2</div>
+      <div class="day">3</div>
+      <div class="day">4</div>
+      <div class="day">5</div>
+    </div>
+
+    <div class="week">
+      <div class="day">6</div>
+      <div class="day">7</div>
+      <div class="day">8</div>
+      <div class="day">9</div>
+      <div class="day">10</div>
+      <div class="day">11</div>
+      <div class="day">12</div>
+    </div>
+
+    <div class="week">
+      <div class="day">13</div>
+      <div class="day">14</div>
+      <div class="day">15</div>
+      <div class="day">16</div>
+      <div class="day">17</div>
+      <div class="day">18</div>
+      <div class="day">19</div>
+    </div>
+
+    <div class="week">
+      <div class="day">20</div>
+      <div class="day">21</div>
+      <div class="day">22</div>
+      <div class="day">23</div>
+      <div class="day">24</div>
+      <div class="day">25</div>
+      <div class="day">26</div>
+    </div>
+
+    <div class="week">
+      <div class="day">27</div>
+      <div class="day">28</div>
+      <div class="day">29</div>
+      <div class="day">30</div>
+      <div class="day">31</div>
+      <div class="day blank"></div>
+      <div class="day blank"></div>
+    </div>
+  </div>
+
+</body>
+</html>
