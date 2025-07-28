@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacher Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f7fa;
+    }
+    h2 {
+      margin-top: 20px;
+    }
+    select, button {
+      padding: 10px;
+      margin: 10px 10px 10px 0;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    .result {
+      margin-top: 20px;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px #ccc;
+    }
+    .teacher {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Filter Teachers</h2>
+
+  <label for="degree">Select Degree:</label>
+  <select id="degree">
+    <option value="">-- Select Degree --</option>
+    <option value="PhD">PhD</option>
+    <option value="Masters">Masters</option>
+  </select>
+
+  <label for="country">Select Country:</label>
+  <select id="country">
+    <option value="">-- Select Country --</option>
+    <option value="USA">USA</option>
+    <option value="UK">UK</option>
+    <option value="Canada">Canada</option>
+    <option value="Japan">Japan</option>
+    <option value="Germany">Germany</option>
+  </select>
+
+  <button onclick="filterTeachers()">Submit</button>
+
+  <div id="results" class="result"></div>
+
+  <script>
+    const teachers = [
+      { name: "Dr. Ahsan Karim", degree: "PhD", country: "Canada", subject: "Computer Science" },
+      { name: "Ms. Farzana Rahman", degree: "Masters", country: "USA", subject: "Computer Science" },
+      { name: "Dr. Shafiq Anwar", degree: "PhD", country: "UK", subject: "Economics" },
+      { name: "Mr. Riad Hossain", degree: "Masters", country: "Canada", subject: "Economics" },
+      { name: "Dr. Mahira Islam", degree: "PhD", country: "Germany", subject: "Mathematics" },
+      { name: "Ms. Nusrat Zahan", degree: "Masters", country: "Japan", subject: "Mathematics" },
+      { name: "Dr. Jamal Uddin", degree: "PhD", country: "USA", subject: "Physics" },
+      { name: "Mr. Rakin Siddique", degree: "Masters", country: "UK", subject: "Physics" }
+    ];
+
+    function filterTeachers() {
+      const selectedDegree = document.getElementById("degree").value;
+      const selectedCountry = document.getElementById("country").value;
+
+      const filtered = teachers.filter(t => {
+        return (!selectedDegree || t.degree === selectedDegree) &&
+               (!selectedCountry || t.country === selectedCountry);
+      });
+
+      const resultsDiv = document.getElementById("results");
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = "❌ No teachers found with selected filters.";
+        return;
+      }
+
+      resultsDiv.innerHTML = "";
+      filtered.forEach(t => {
+        resultsDiv.innerHTML += `
+          <div class="teacher">
+            👤 <strong>${t.name}</strong><br/>
+            📘 Subject: ${t.subject}<br/>
+            🎓 Degree: ${t.degree}<br/>
+            🌍 Country: ${t.country}
+          </div>
+        `;
+      });
+    }
+  </script>
+
+</body>
+</html>
