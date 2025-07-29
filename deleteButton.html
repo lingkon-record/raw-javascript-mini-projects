@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clean Data App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f9fbe7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      color: #33691e;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .contact-card {
+      background: #ffffff;
+      border: 1px solid #c5e1a5;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-info {
+      font-size: 16px;
+      color: #2e7d32;
+    }
+
+    .remove-btn {
+      background: #e53935;
+      border: none;
+      padding: 6px 10px;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .clean-btn {
+      background: #558b2f;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .clean-btn:hover {
+      background: #33691e;
+    }
+
+    .remove-btn:hover {
+      background: #c62828;
+    }
+
+    .empty {
+      text-align: center;
+      margin-top: 20px;
+      color: #9e9e9e;
+    }
+
+    @media (max-width: 600px) {
+      .contact-info {
+        font-size: 14px;
+      }
+
+      .clean-btn, .remove-btn {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📋 Clean Contact List</h2>
+
+  <div class="container" id="contactList">
+    <!-- Contacts will appear here -->
+  </div>
+
+  <div class="actions">
+    <button class="clean-btn" onclick="removeDuplicates()">🧹 Remove Duplicates</button>
+  </div>
+
+  <script>
+    let contacts = [
+      { name: "Rafiq", phone: "01711111111" },
+      { name: "Selina", phone: "01822222222" },
+      { name: "Tanvir", phone: "01933333333" },
+      { name: "Rafiq", phone: "01711111111" },
+      { name: "Arif", phone: "01555555555" },
+      { name: "Selina", phone: "01822222222" }
+    ];
+
+    const contactList = document.getElementById("contactList");
+
+    function renderContacts() {
+      contactList.innerHTML = "";
+
+      if (contacts.length === 0) {
+        contactList.innerHTML = `<div class="empty">No contacts available.</div>`;
+        return;
+      }
+
+      contacts.forEach((contact, index) => {
+        const card = document.createElement("div");
+        card.className = "contact-card";
+
+        const info = document.createElement("div");
+        info.className = "contact-info";
+        info.textContent = `${contact.name} — ${contact.phone}`;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "remove-btn";
+        removeBtn.textContent = "Remove";
+        removeBtn.onclick = () => {
+          contacts.splice(index, 1);
+          renderContacts();
+        };
+
+        card.appendChild(info);
+        card.appendChild(removeBtn);
+        contactList.appendChild(card);
+      });
+    }
+
+    function removeDuplicates() {
+      const seen = {};
+      contacts = contacts.filter(contact => {
+        const key = contact.name + contact.phone;
+        if (seen[key]) {
+          return false;
+        }
+        seen[key] = true;
+        return true;
+      });
+      renderContacts();
+    }
+
+    renderContacts();
+  </script>
+
+</body>
+</html>
